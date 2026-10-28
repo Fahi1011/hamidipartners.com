@@ -1,0 +1,474 @@
+<!doctype html>
+<html lang="nb">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Hamidi Partners – nettsider for småbedrifter</title>
+  <meta name="description" content="Moderne, mobilvennlige nettsider for småbedrifter. Domene, drift, sikkerhet og endringer inkludert i en fast månedspris. Se et gratis utkast før du bestemmer deg." />
+  <meta property="og:title" content="Hamidi Partners – nettsider for småbedrifter" />
+  <meta property="og:description" content="Ny nettside med drift inkludert. Gratis utkast først, fast månedspris etterpå." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://hamidipartners.com/" />
+  <meta name="theme-color" content="#14213d" />
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="canonical" href="https://hamidipartners.com/" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ink: #14213d;
+      --ink-soft: #3d4a63;
+      --muted: #6b7489;
+      --line: #e3e6ec;
+      --bg: #fbfaf7;
+      --card: #ffffff;
+      --accent: #e4572e;
+      --accent-dark: #c4431d;
+      --accent-soft: #fdeee8;
+      --green: #2f855a;
+      --radius: 14px;
+      --max: 1120px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: "Inter", system-ui, -apple-system, sans-serif;
+      color: var(--ink);
+      background: var(--bg);
+      line-height: 1.6;
+      font-size: 17px;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; }
+    h1, h2, h3 { font-family: "Fraunces", Georgia, serif; font-weight: 600; line-height: 1.15; letter-spacing: -0.01em; }
+    .wrap { max-width: var(--max); margin: 0 auto; padding: 0 20px; }
+
+    /* Header */
+    header {
+      position: sticky; top: 0; z-index: 10;
+      background: rgba(251, 250, 247, 0.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav { display: flex; align-items: center; justify-content: space-between; height: 68px; }
+    .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; font-weight: 600; font-size: 18px; }
+    .logo-mark {
+      width: 34px; height: 34px; border-radius: 9px; background: var(--ink); color: #fff;
+      display: grid; place-items: center; font-family: "Fraunces", serif; font-size: 16px;
+    }
+    .nav-links { display: flex; gap: 28px; align-items: center; }
+    .nav-links a { text-decoration: none; color: var(--ink-soft); font-size: 15px; font-weight: 500; }
+    .nav-links a:hover { color: var(--ink); }
+    .btn {
+      display: inline-block; text-decoration: none; font-weight: 600; font-size: 16px;
+      padding: 13px 22px; border-radius: 10px; transition: background .15s, transform .15s;
+    }
+    .btn-primary { background: var(--accent); color: #fff; }
+    .btn-primary:hover { background: var(--accent-dark); transform: translateY(-1px); }
+    .btn-ghost { color: var(--ink); border: 1.5px solid var(--line); background: var(--card); }
+    .btn-ghost:hover { border-color: var(--ink-soft); }
+    .nav .btn { padding: 10px 16px; font-size: 15px; }
+
+    /* Hero */
+    .hero { padding: 80px 0 72px; }
+    .hero-grid { display: grid; grid-template-columns: 1.05fr 1fr; gap: 56px; align-items: center; }
+    .eyebrow {
+      display: inline-block; font-size: 14px; font-weight: 600; color: var(--accent-dark);
+      background: var(--accent-soft); padding: 6px 12px; border-radius: 99px; margin-bottom: 20px;
+    }
+    .hero h1 { font-size: clamp(38px, 5.2vw, 58px); margin-bottom: 20px; }
+    .hero h1 em { font-style: italic; color: var(--accent); }
+    .lead { font-size: 19px; color: var(--ink-soft); max-width: 520px; margin-bottom: 30px; }
+    .hero-cta { display: flex; gap: 12px; flex-wrap: wrap; }
+    .hero-note { margin-top: 18px; font-size: 14px; color: var(--muted); }
+
+    /* Mockup */
+    .mock { position: relative; }
+    .browser {
+      background: var(--card); border: 1px solid var(--line); border-radius: 14px;
+      box-shadow: 0 30px 60px -20px rgba(20, 33, 61, .25); overflow: hidden;
+    }
+    .browser-bar { display: flex; gap: 6px; align-items: center; padding: 12px 14px; border-bottom: 1px solid var(--line); background: #f5f6f8; }
+    .dot { width: 10px; height: 10px; border-radius: 50%; background: #d5d9e0; }
+    .url { margin-left: 10px; flex: 1; background: #fff; border: 1px solid var(--line); border-radius: 6px; font-size: 12px; color: var(--muted); padding: 4px 10px; }
+    .url b { color: var(--green); font-weight: 600; }
+    .site { padding: 22px; }
+    .site-hero { background: var(--ink); border-radius: 10px; padding: 26px 22px; color: #fff; margin-bottom: 14px; }
+    .bar { height: 10px; border-radius: 5px; background: rgba(255,255,255,.28); margin-bottom: 9px; }
+    .bar.lg { height: 16px; width: 70%; background: rgba(255,255,255,.9); }
+    .bar.md { width: 85%; }
+    .bar.sm { width: 55%; }
+    .pill { display: inline-block; margin-top: 10px; background: var(--accent); border-radius: 7px; width: 110px; height: 30px; }
+    .site-cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+    .tile { border: 1px solid var(--line); border-radius: 9px; padding: 12px; }
+    .tile .ic { width: 26px; height: 26px; border-radius: 7px; background: var(--accent-soft); margin-bottom: 9px; }
+    .tile .ln { height: 7px; border-radius: 4px; background: #e8ebf0; margin-bottom: 6px; }
+    .tile .ln.s { width: 60%; }
+    .phone {
+      position: absolute; right: -18px; bottom: -34px; width: 150px;
+      background: var(--ink); border-radius: 24px; padding: 9px;
+      box-shadow: 0 24px 40px -14px rgba(20, 33, 61, .45);
+    }
+    .phone-screen { background: #fff; border-radius: 17px; padding: 12px 10px; }
+    .phone-screen .bar { background: #e8ebf0; height: 7px; }
+    .phone-screen .bar.lg { background: var(--ink); height: 10px; }
+    .phone-call { margin-top: 10px; background: var(--green); color: #fff; font-size: 11px; font-weight: 600; text-align: center; border-radius: 8px; padding: 7px 0; }
+    .badge {
+      position: absolute; left: -18px; top: 46%; background: var(--card); border: 1px solid var(--line);
+      border-radius: 12px; padding: 10px 14px; font-size: 13px; font-weight: 600;
+      box-shadow: 0 14px 30px -12px rgba(20, 33, 61, .3); display: flex; gap: 8px; align-items: center;
+    }
+    .badge i { width: 9px; height: 9px; border-radius: 50%; background: var(--green); display: inline-block; }
+
+    /* Sections */
+    section { padding: 84px 0; }
+    .section-head { max-width: 640px; margin-bottom: 44px; }
+    .section-head h2 { font-size: clamp(30px, 3.6vw, 40px); margin-bottom: 12px; }
+    .section-head p { color: var(--ink-soft); font-size: 18px; }
+    .alt { background: var(--card); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+
+    /* Problem strip */
+    .signs { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+    .sign { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 22px; }
+    .sign strong { display: block; font-size: 16px; margin-bottom: 6px; }
+    .sign span { color: var(--muted); font-size: 15px; }
+
+    /* Features */
+    .features { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .feature { padding: 26px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--bg); }
+    .feature svg { width: 28px; height: 28px; color: var(--accent); margin-bottom: 14px; }
+    .feature h3 { font-size: 20px; margin-bottom: 8px; }
+    .feature p { color: var(--ink-soft); font-size: 16px; }
+
+    /* Pricing */
+    .prices { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; align-items: stretch; }
+    .price {
+      background: var(--card); border: 1px solid var(--line); border-radius: var(--radius);
+      padding: 30px 26px; display: flex; flex-direction: column;
+    }
+    .price.featured { border: 2px solid var(--ink); position: relative; }
+    .price.featured::before {
+      content: "Anbefalt"; position: absolute; top: -13px; left: 24px;
+      background: var(--ink); color: #fff; font-size: 12px; font-weight: 600; padding: 4px 10px; border-radius: 99px;
+    }
+    .price h3 { font-size: 24px; margin-bottom: 4px; }
+    .price .for { color: var(--muted); font-size: 15px; margin-bottom: 22px; min-height: 48px; }
+    .amount { font-family: "Fraunces", serif; font-size: 34px; font-weight: 600; line-height: 1; }
+    .amount small { font-family: "Inter", sans-serif; font-size: 15px; color: var(--muted); font-weight: 500; }
+    .setup { font-size: 15px; color: var(--ink-soft); margin: 8px 0 4px; }
+    .option { font-size: 14px; color: var(--muted); padding: 10px 12px; background: var(--bg); border-radius: 9px; margin: 12px 0 20px; }
+    .option b { color: var(--ink); }
+    .price ul { list-style: none; display: grid; gap: 9px; align-content: start; margin-bottom: 26px; flex: 1; }
+    .price li { padding-left: 26px; position: relative; font-size: 15px; color: var(--ink-soft); }
+    .price li::before {
+      content: ""; position: absolute; left: 0; top: 5px; width: 16px; height: 16px; border-radius: 50%;
+      background: var(--accent-soft) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4.5 8.2l2.3 2.3 4.7-5' fill='none' stroke='%23c4431d' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/16px no-repeat;
+    }
+    .price .btn { text-align: center; }
+    .included {
+      margin-top: 28px; padding: 22px 26px; border-radius: var(--radius); background: var(--ink); color: #fff;
+      display: grid; grid-template-columns: auto 1fr; gap: 6px 24px; align-items: center;
+    }
+    .included strong { font-family: "Fraunces", serif; font-size: 20px; font-weight: 600; }
+    .included span { color: rgba(255,255,255,.8); font-size: 15px; }
+
+    /* Steps */
+    .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; counter-reset: s; }
+    .step { position: relative; padding-top: 54px; }
+    .step::before {
+      counter-increment: s; content: counter(s);
+      position: absolute; top: 0; left: 0; width: 38px; height: 38px; border-radius: 50%;
+      background: var(--accent-soft); color: var(--accent-dark); font-weight: 600;
+      display: grid; place-items: center; font-family: "Fraunces", serif; font-size: 18px;
+    }
+    .step h3 { font-size: 19px; margin-bottom: 6px; }
+    .step p { color: var(--ink-soft); font-size: 15.5px; }
+
+    /* About + FAQ */
+    .two { display: grid; grid-template-columns: 1fr 1.15fr; gap: 64px; align-items: start; }
+    .about h2 { font-size: clamp(28px, 3.2vw, 36px); margin-bottom: 16px; }
+    .about p { color: var(--ink-soft); margin-bottom: 14px; }
+    details { border-bottom: 1px solid var(--line); padding: 18px 0; }
+    details:first-of-type { border-top: 1px solid var(--line); }
+    summary { cursor: pointer; font-weight: 600; list-style: none; display: flex; justify-content: space-between; gap: 16px; }
+    summary::-webkit-details-marker { display: none; }
+    summary::after { content: "+"; font-size: 22px; line-height: 1; color: var(--muted); transition: transform .2s; }
+    details[open] summary::after { transform: rotate(45deg); }
+    details p { color: var(--ink-soft); margin-top: 10px; font-size: 16px; }
+
+    /* Contact */
+    .contact { text-align: center; }
+    .contact-box {
+      max-width: 760px; margin: 0 auto; background: var(--ink); color: #fff;
+      border-radius: 22px; padding: 56px 32px;
+    }
+    .contact-box h2 { font-size: clamp(30px, 4vw, 42px); margin-bottom: 14px; }
+    .contact-box p { color: rgba(255,255,255,.82); font-size: 18px; max-width: 520px; margin: 0 auto 28px; }
+    .mail { display: block; margin-top: 18px; color: rgba(255,255,255,.75); font-size: 15px; }
+
+    footer { padding: 32px 0 40px; color: var(--muted); font-size: 14px; }
+    .foot { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+
+    /* Responsive */
+    @media (max-width: 960px) {
+      .hero-grid, .two { grid-template-columns: 1fr; gap: 48px; }
+      .mock { max-width: 520px; }
+      .signs, .steps { grid-template-columns: repeat(2, 1fr); }
+      .features, .prices { grid-template-columns: 1fr; }
+      .price .for { min-height: 0; }
+    }
+    @media (max-width: 640px) {
+      body { font-size: 16px; }
+      .nav-links a:not(.btn) { display: none; }
+      .hero { padding: 48px 0 64px; }
+      section { padding: 64px 0; }
+      .signs, .steps { grid-template-columns: 1fr; }
+      .phone { width: 120px; right: -6px; bottom: -28px; }
+      .badge { left: -6px; }
+      .site-cols { grid-template-columns: repeat(2, 1fr); }
+      .site-cols .tile:nth-child(3) { display: none; }
+      .included { grid-template-columns: 1fr; }
+      .contact-box { padding: 44px 22px; border-radius: 18px; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a href="#" class="logo" aria-label="Hamidi Partners, til toppen">
+      <span class="logo-mark">HP</span> Hamidi Partners
+    </a>
+    <nav class="nav-links">
+      <a href="#tjenester">Tjenester</a>
+      <a href="#priser">Priser</a>
+      <a href="#slik">Slik jobber jeg</a>
+      <a href="#kontakt" class="btn btn-primary">Få et gratis utkast</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="eyebrow">Nettsider for småbedrifter</span>
+        <h1>En nettside som <em>jobber</em> for bedriften din</h1>
+        <p class="lead">Jeg lager moderne nettsider som fungerer på mobil, og tar meg av domene, drift, sikkerhet og endringer for en fast månedspris. Du ser et gratis utkast før du bestemmer deg.</p>
+        <div class="hero-cta">
+          <a href="#kontakt" class="btn btn-primary">Be om et gratis utkast</a>
+          <a href="#priser" class="btn btn-ghost">Se priser</a>
+        </div>
+        <p class="hero-note">Ingen forpliktelser før du har sett utkastet.</p>
+      </div>
+
+      <div class="mock" aria-hidden="true">
+        <div class="browser">
+          <div class="browser-bar">
+            <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+            <span class="url"><b>https://</b>dinbedrift.no</span>
+          </div>
+          <div class="site">
+            <div class="site-hero">
+              <div class="bar lg"></div>
+              <div class="bar md"></div>
+              <div class="bar sm"></div>
+              <span class="pill"></span>
+            </div>
+            <div class="site-cols">
+              <div class="tile"><div class="ic"></div><div class="ln"></div><div class="ln s"></div></div>
+              <div class="tile"><div class="ic"></div><div class="ln"></div><div class="ln s"></div></div>
+              <div class="tile"><div class="ic"></div><div class="ln"></div><div class="ln s"></div></div>
+            </div>
+          </div>
+        </div>
+        <div class="phone">
+          <div class="phone-screen">
+            <div class="bar lg"></div>
+            <div class="bar"></div>
+            <div class="bar sm"></div>
+            <div class="phone-call">Ring oss</div>
+          </div>
+        </div>
+        <div class="badge"><i></i> Sikker og mobiltilpasset</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="alt" id="tjenester">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Kjenner du deg igjen?</h2>
+        <p>De fleste kunder sjekker bedriften din på mobilen før de ringer. Disse tingene får mange til å velge noen andre.</p>
+      </div>
+      <div class="signs">
+        <div class="sign"><strong>Ikke laget for mobil</strong><span>Teksten er bitteliten og knappene er vanskelige å treffe.</span></div>
+        <div class="sign"><strong>Advarsel i nettleseren</strong><span>Uten HTTPS viser Chrome «ikke sikker» før siden åpner.</span></div>
+        <div class="sign"><strong>Utdatert innhold</strong><span>Gamle nyheter, gamle priser eller «© 2012» nederst.</span></div>
+        <div class="sign"><strong>Ingen tid til å fikse det</strong><span>Du driver en bedrift, ikke en nettside. Det er greit.</span></div>
+      </div>
+
+      <div class="section-head" style="margin-top: 84px;">
+        <h2>Det du får</h2>
+        <p>En ferdig nettside, og noen som tar ansvar for den etterpå.</p>
+      </div>
+      <div class="features">
+        <div class="feature">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2" width="12" height="20" rx="2.5"/><path d="M11 18h2"/></svg>
+          <h3>Laget for mobil</h3>
+          <p>Ser riktig ut på telefon, nettbrett og PC, med en tydelig ring-knapp og kontaktskjema.</p>
+        </div>
+        <div class="feature">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 4.5-3.4 8.3-8 9-4.6-.7-8-4.5-8-9V6z"/><path d="M9 12l2 2 4-4"/></svg>
+          <h3>Sikker og oppdatert</h3>
+          <p>HTTPS, sikkerhetsoppdateringer og sikkerhetskopi er inkludert. Ingen advarsler for kundene dine.</p>
+        </div>
+        <div class="feature">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+          <h3>Lett å finne</h3>
+          <p>Ryddig oppbygd så Google forstår hva du tilbyr og hvor du holder til.</p>
+        </div>
+        <div class="feature">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h4L19 9l-4-4L4 16z"/><path d="M13.5 6.5l4 4"/></svg>
+          <h3>Endringer inkludert</h3>
+          <p>Nye åpningstider, bilder eller priser? Send meg en e-post, så fikser jeg det.</p>
+        </div>
+        <div class="feature">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 010 18M12 3a14 14 0 000 18"/></svg>
+          <h3>Domene og drift</h3>
+          <p>Jeg bruker domenet du allerede har, eller setter opp et nytt. Hosting er inkludert.</p>
+        </div>
+        <div class="feature">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12a8 8 0 11-3-6.2"/><path d="M21 4l-9 9-3-3"/></svg>
+          <h3>Én kontaktperson</h3>
+          <p>Du snakker direkte med den som lager siden. Ingen kundeservice-kø.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="priser">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Enkle, faste priser</h2>
+        <p>Velg mellom en lav oppstartspris eller 0 kr i oppstart. Endelig pris avtales etter at du har sett utkastet.</p>
+      </div>
+      <div class="prices">
+        <div class="price">
+          <h3>Liten</h3>
+          <p class="for">For håndverkere, butikker, restauranter og andre som trenger en ryddig side.</p>
+          <div class="amount">690 kr <small>/ mnd</small></div>
+          <p class="setup">+ 6 000 kr i oppstart</p>
+          <p class="option">Eller <b>0 kr i oppstart og 990 kr/mnd</b> med 12 måneders binding.</p>
+          <ul>
+            <li>1–3 sider</li>
+            <li>Ring-knapp, kontaktskjema og kart</li>
+            <li>Åpningstider, tjenester og bilder</li>
+          </ul>
+          <a href="#kontakt" class="btn btn-ghost">Be om utkast</a>
+        </div>
+        <div class="price featured">
+          <h3>Mellom</h3>
+          <p class="for">For bedrifter med flere tjenester, ansatte eller kunder som vil vite mer.</p>
+          <div class="amount">990 kr <small>/ mnd</small></div>
+          <p class="setup">+ 12 000 kr i oppstart</p>
+          <p class="option">Eller <b>0 kr i oppstart og 1 290 kr/mnd</b> med 12 måneders binding.</p>
+          <ul>
+            <li>Opptil 8 sider</li>
+            <li>Prosjektgalleri eller bildegalleri</li>
+            <li>Skjema for befaring, booking eller søknad</li>
+            <li>Nyheter du kan be meg oppdatere løpende</li>
+          </ul>
+          <a href="#kontakt" class="btn btn-primary">Be om utkast</a>
+        </div>
+        <div class="price">
+          <h3>Katalog</h3>
+          <p class="for">For bedrifter med mange produkter som kunder vil se før de tar kontakt.</p>
+          <div class="amount">1 490 kr <small>/ mnd</small></div>
+          <p class="setup">+ 12 000 kr i oppstart</p>
+          <p class="option">Eller <b>0 kr i oppstart og 1 990 kr/mnd</b> med 12 måneders binding.</p>
+          <ul>
+            <li>Produktkatalog med store bilder</li>
+            <li>Prisforespørsel per produkt</li>
+            <li>Flere språk ved behov</li>
+            <li>Løpende oppdatering av produkter</li>
+          </ul>
+          <a href="#kontakt" class="btn btn-ghost">Be om utkast</a>
+        </div>
+      </div>
+      <div class="included">
+        <strong>Alltid inkludert i månedsprisen</strong>
+        <span>Domene, hosting, HTTPS, sikkerhetsoppdateringer, sikkerhetskopi og små endringer i tekst og bilder.</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="alt" id="slik">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Slik jobber jeg</h2>
+        <p>Du bruker noen minutter. Jeg gjør resten.</p>
+      </div>
+      <div class="steps">
+        <div class="step"><h3>Ta kontakt</h3><p>Send en e-post om bedriften og hva du ønsker. Har du en nettside fra før, ser jeg på den.</p></div>
+        <div class="step"><h3>Gratis utkast</h3><p>Jeg lager et utkast av forsiden, så du ser hvordan det blir. Det koster ingenting.</p></div>
+        <div class="step"><h3>Ferdigstilling</h3><p>Du sier hva du vil endre. Jeg flytter over innholdet og gjør siden klar.</p></div>
+        <div class="step"><h3>Siden går live</h3><p>Siden publiseres på domenet ditt. Deretter drifter og oppdaterer jeg den.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap two">
+      <div class="about">
+        <h2>Om Hamidi Partners</h2>
+        <p>Hamidi Partners drives av meg, Farshad Hamidi. Jeg har bakgrunn i økonomi og programmering, og lager nettsider for bedrifter som vil se profesjonelle ut på nett uten å bruke tid på det selv.</p>
+        <p>Du får én fast kontaktperson som kjenner siden din, og som svarer på e-post.</p>
+      </div>
+      <div>
+        <details>
+          <summary>Hva koster det hvis jeg ikke vil gå videre etter utkastet?</summary>
+          <p>Ingenting. Utkastet er gratis og uforpliktende.</p>
+        </details>
+        <details>
+          <summary>Må jeg binde meg?</summary>
+          <p>Med oppstartspris er det ingen binding. Velger du 0 kr i oppstart, er bindingstiden 12 måneder.</p>
+        </details>
+        <details>
+          <summary>Jeg har allerede et domene. Kan jeg beholde det?</summary>
+          <p>Ja. Jeg setter opp den nye siden på domenet du har, og e-posten din fortsetter som før.</p>
+        </details>
+        <details>
+          <summary>Hvem eier innholdet?</summary>
+          <p>Du. Domenet, tekstene og bildene er dine. Vil du avslutte, får du med deg innholdet.</p>
+        </details>
+        <details>
+          <summary>Kan dere hjelpe med mer enn nettsider?</summary>
+          <p>Ja, for eksempel bookingløsning, skjemaer som sender rett til e-posten din, eller enkel automatisering av rutinearbeid. Spør gjerne.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact" id="kontakt">
+    <div class="wrap">
+      <div class="contact-box">
+        <h2>Vil du se hvordan det kan bli?</h2>
+        <p>Send meg navnet på bedriften og eventuelt nettsiden dere har i dag. Du får et gratis utkast av forsiden.</p>
+        <a class="btn btn-primary" href="mailto:farshad@hamidipartners.com?subject=Gratis%20utkast%20av%20nettside">Send e-post</a>
+        <span class="mail">farshad@hamidipartners.com</span>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <span>© 2026 Hamidi Partners</span>
+    <a href="mailto:farshad@hamidipartners.com">farshad@hamidipartners.com</a>
+  </div>
+</footer>
+
+</body>
+</html>
