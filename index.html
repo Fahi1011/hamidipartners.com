@@ -81,6 +81,16 @@
     .arrow { transition: transform .2s; }
     .btn:hover .arrow { transform: translate(2px, -2px); }
 
+
+    /* Language switch */
+    .lang { display: flex; border: 1px solid var(--border); border-radius: 99px; padding: 3px; background: var(--panel); }
+    .lang button { font-family: var(--mono); font-size: 11.5px; letter-spacing: .1em; color: var(--muted); background: none; border: 0; padding: 6px 10px; border-radius: 99px; cursor: pointer; transition: background .2s, color .2s; }
+    .lang button:hover { color: var(--text); }
+    .lang button[aria-pressed="true"] { background: #fff; color: #05060a; }
+    #threads { position: absolute; inset: 0; z-index: -1; width: 100%; height: 100%; pointer-events: none; }
+    @media (max-width: 640px) { .nav-links { gap: 8px; } .nav .btn { padding: 9px 13px; font-size: 13.5px; } }
+    @media (max-width: 480px) { .logo-text { display: none; } }
+
     /* ---------- Hero ---------- */
     .hero { position: relative; height: 100vh; min-height: 680px; overflow: hidden; isolation: isolate; }
     #stars { position: absolute; inset: 0; z-index: -3; width: 100%; height: 100%; }
@@ -134,7 +144,7 @@
       content: ""; position: absolute; inset: 0; pointer-events: none;
       background: radial-gradient(ellipse 50% 30% at 65% 50%, rgba(106, 168, 255, .1), transparent 70%);
     }
-    .captions { position: relative; height: 260px; }
+    .captions { position: relative; height: 320px; }
     .cap { position: absolute; inset: 0; opacity: 0; transform: translateY(20px); transition: opacity .5s, transform .5s; }
     .cap.on { opacity: 1; transform: none; }
     .cap .mono { color: var(--accent); display: block; margin-bottom: 14px; }
@@ -314,7 +324,7 @@
     /* ---------- Responsive ---------- */
     @media (max-width: 1000px) {
       .sticky { grid-template-columns: 1fr; grid-template-rows: auto 1fr; gap: 10px; padding-top: 96px; padding-bottom: 30px; align-items: start; }
-      .captions { height: 190px; }
+      .captions { height: 230px; }
       .viewport { height: 52vh; }
       .orbit-grid, .two { grid-template-columns: 1fr; }
       .prices { grid-template-columns: 1fr; }
@@ -330,7 +340,7 @@
       .planet { top: 52%; width: 300vw; transform: translateX(-40%); }
       .flare { top: 52%; width: 120vw; height: 40vw; }
       .hero-inner { padding-bottom: 7vh; }
-      .captions { height: 210px; }
+      .captions { height: 250px; }
       .cap h3 { font-size: 28px; }
       .viewport { height: 46vh; }
       .phone { width: 110px; right: -4px; bottom: -10px; }
@@ -364,12 +374,13 @@
 
 <header id="top">
   <div class="wrap nav">
-    <a href="#" class="logo" aria-label="Hamidi Partners, til toppen"><span class="logo-mark">HP</span> HAMIDI PARTNERS</a>
+    <a href="#" class="logo" aria-label="Hamidi Partners"><span class="logo-mark">HP</span> <span class="logo-text">HAMIDI PARTNERS</span></a>
     <nav class="nav-links">
-      <a href="#prov" class="mono">Før / etter</a>
-      <a href="#priser" class="mono">Priser</a>
-      <a href="#slik" class="mono">Prosess</a>
-      <a href="#kontakt" class="btn btn-light">Gratis utkast <span class="arrow">↗</span></a>
+      <a href="#prov" class="mono" data-en="Before / after">Før / etter</a>
+      <a href="#priser" class="mono" data-en="Pricing">Priser</a>
+      <a href="#slik" class="mono" data-en="Process">Prosess</a>
+      <div class="lang" role="group" aria-label="Språk / Language"><button type="button" data-l="no" aria-pressed="true">NO</button><button type="button" data-l="en" aria-pressed="false">EN</button></div>
+      <a href="#kontakt" class="btn btn-light" data-en="Free draft &lt;span class=&quot;arrow&quot;&gt;↗&lt;/span&gt;">Gratis utkast <span class="arrow">↗</span></a>
     </nav>
   </div>
 </header>
@@ -377,22 +388,23 @@
 <main>
   <section class="hero" id="hero">
     <canvas id="stars" aria-hidden="true"></canvas>
+    <canvas id="threads" aria-hidden="true"></canvas>
     <div class="planet-wrap" id="planet" aria-hidden="true"><div class="planet"></div><div class="flare"></div></div>
     <div class="wrap hero-inner">
-      <span class="mono hero-tag"><i></i> Nettsider for småbedrifter · tar imot nye kunder</span>
-      <h1>En nettside som <span class="glow">jobber</span> for bedriften din</h1>
+      <span class="mono hero-tag" data-en="&lt;i&gt;&lt;/i&gt; Websites for small businesses · taking on new clients"><i></i> Nettsider for småbedrifter · tar imot nye kunder</span>
+      <h1 data-en="A website that &lt;span class=&quot;glow&quot;&gt;works&lt;/span&gt; for your business">En nettside som <span class="glow">jobber</span> for bedriften din</h1>
       <div class="hero-bottom">
         <div>
-          <p class="hero-lead">Jeg lager moderne nettsider som fungerer på mobil, og tar meg av domene, drift, sikkerhet og endringer for en fast månedspris. Du ser et gratis utkast før du bestemmer deg.</p>
+          <p class="hero-lead" data-en="I build modern websites that work on mobile, and take care of domain, hosting, security and changes for a fixed monthly price. You see a free draft before you decide.">Jeg lager moderne nettsider som fungerer på mobil, og tar meg av domene, drift, sikkerhet og endringer for en fast månedspris. Du ser et gratis utkast før du bestemmer deg.</p>
           <div class="hero-cta">
-            <a href="#kontakt" class="btn btn-primary">Be om et gratis utkast <span class="arrow">↗</span></a>
-            <a href="#story" class="btn btn-line">Se forvandlingen</a>
+            <a href="#kontakt" class="btn btn-primary" data-en="Request a free draft &lt;span class=&quot;arrow&quot;&gt;↗&lt;/span&gt;">Be om et gratis utkast <span class="arrow">↗</span></a>
+            <a href="#story" class="btn btn-line" data-en="See the transformation">Se forvandlingen</a>
           </div>
         </div>
         <div class="hero-links mono">
-          <a href="#prov">Før og etter →</a>
-          <a href="#priser">Priser →</a>
-          <a href="#kontakt">Kontakt →</a>
+          <a href="#prov" data-en="Before and after →">Før og etter →</a>
+          <a href="#priser" data-en="Pricing →">Priser →</a>
+          <a href="#kontakt" data-en="Contact →">Kontakt →</a>
         </div>
       </div>
     </div>
@@ -404,19 +416,19 @@
       <div>
         <div class="captions">
           <div class="cap on">
-            <span class="mono">01 / Før</span>
-            <h3>Kundene dømmer deg på mobilen</h3>
-            <p>Ikke mobiltilpasset, «ikke sikker» i nettleseren og nyheter fra 2009. Da velger mange noen andre.</p>
+            <span class="mono" data-en="01 / Before">01 / Før</span>
+            <h3 data-en="Customers judge you on their phone">Kundene dømmer deg på mobilen</h3>
+            <p data-en="Not mobile-friendly, “not secure” in the browser and news from 2009. Many people pick someone else.">Ikke mobiltilpasset, «ikke sikker» i nettleseren og nyheter fra 2009. Da velger mange noen andre.</p>
           </div>
           <div class="cap">
             <span class="mono">02 / Redesign</span>
-            <h3>Ny side på domenet du har</h3>
-            <p>Jeg bygger en moderne side og flytter over innholdet ditt. Du ser et gratis utkast før du bestemmer deg.</p>
+            <h3 data-en="A new site on the domain you already have">Ny side på domenet du har</h3>
+            <p data-en="I build a modern site and move your content over. You see a free draft before you decide.">Jeg bygger en moderne side og flytter over innholdet ditt. Du ser et gratis utkast før du bestemmer deg.</p>
           </div>
           <div class="cap">
             <span class="mono">03 / Live</span>
-            <h3>Rask, sikker og drevet for deg</h3>
-            <p>Fungerer på alle skjermer, har HTTPS, og jeg drifter og oppdaterer den for en fast månedspris.</p>
+            <h3 data-en="Fast, secure and run for you">Rask, sikker og drevet for deg</h3>
+            <p data-en="Works on every screen, has HTTPS, and I host and update it for a fixed monthly price.">Fungerer på alle skjermer, har HTTPS, og jeg drifter og oppdaterer den for en fast månedspris.</p>
           </div>
         </div>
         <div class="progress" aria-hidden="true"><span><i></i></span><span><i></i></span><span><i></i></span></div>
@@ -429,19 +441,19 @@
           </div>
           <div class="screen">
             <div class="old">
-              <h4>Velkommen til vår hjemmeside!</h4>
-              <p style="text-align:center"><i>Din lokale bedrift siden 1998</i></p>
-              <div class="uc">*** SIDEN ER UNDER KONSTRUKSJON ***</div>
+              <h4 data-en="Welcome to our homepage!">Velkommen til vår hjemmeside!</h4>
+              <p style="text-align:center" data-en="&lt;i&gt;Your local business since 1998&lt;/i&gt;"><i>Din lokale bedrift siden 1998</i></p>
+              <div class="uc" data-en="*** UNDER CONSTRUCTION ***">*** SIDEN ER UNDER KONSTRUKSJON ***</div>
               <table><tr>
-                <td style="width:32%"><a>» Hjem</a><a>» Om oss</a><a>» Tjenester</a><a>» Kontakt</a><a>» Gjestebok</a></td>
-                <td><b>NYHETER:</b><br />12.03.2009: Vi har fått nytt faksnummer!<br /><br />Denne siden vises best i Internet Explorer 6.</td>
+                <td style="width:32%" data-en="&lt;a&gt;» Home&lt;/a&gt;&lt;a&gt;» About us&lt;/a&gt;&lt;a&gt;» Services&lt;/a&gt;&lt;a&gt;» Contact&lt;/a&gt;&lt;a&gt;» Guestbook&lt;/a&gt;"><a>» Hjem</a><a>» Om oss</a><a>» Tjenester</a><a>» Kontakt</a><a>» Gjestebok</a></td>
+                <td data-en="&lt;b&gt;NEWS:&lt;/b&gt;&lt;br /&gt;12.03.2009: We have a new fax number!&lt;br /&gt;&lt;br /&gt;Best viewed in Internet Explorer 6."><b>NYHETER:</b><br />12.03.2009: Vi har fått nytt faksnummer!<br /><br />Denne siden vises best i Internet Explorer 6.</td>
               </tr></table>
-              <p class="foot-old">Besøkende: <span class="counter">004213</span> | Sist oppdatert: 12.03.2009</p>
+              <p class="foot-old" data-en="Visitors: &lt;span class=&quot;counter&quot;&gt;004213&lt;/span&gt; | Last updated: 12.03.2009">Besøkende: <span class="counter">004213</span> | Sist oppdatert: 12.03.2009</p>
             </div>
             <div class="new">
-              <div class="new-nav"><div><b>Din Bedrift</b><span>Tjenester</span><span>Om oss</span><span>Kontakt</span></div><span class="call">Ring oss</span></div>
-              <div class="new-hero"><h4>Lokal kvalitet du kan stole på</h4><p>Se hva vi tilbyr, sjekk åpningstidene og bestill på under ett minutt.</p><span class="b">Bestill time</span></div>
-              <div class="new-cards"><div>Tjenester<small>Tydelige priser</small></div><div>Åpent i dag<small>08:00–17:00</small></div><div>Kart og adresse<small>Finn fram enkelt</small></div></div>
+              <div class="new-nav"><div data-en="&lt;b&gt;Your Business&lt;/b&gt;&lt;span&gt;Services&lt;/span&gt;&lt;span&gt;About&lt;/span&gt;&lt;span&gt;Contact&lt;/span&gt;"><b>Din Bedrift</b><span>Tjenester</span><span>Om oss</span><span>Kontakt</span></div><span class="call" data-en="Call us">Ring oss</span></div>
+              <div class="new-hero"><h4 data-en="Local quality you can trust">Lokal kvalitet du kan stole på</h4><p data-en="See what we offer, check opening hours and book in under a minute.">Se hva vi tilbyr, sjekk åpningstidene og bestill på under ett minutt.</p><span class="b" data-en="Book now">Bestill time</span></div>
+              <div class="new-cards"><div data-en="Services&lt;small&gt;Clear prices&lt;/small&gt;">Tjenester<small>Tydelige priser</small></div><div data-en="Open today&lt;small&gt;08:00–17:00&lt;/small&gt;">Åpent i dag<small>08:00–17:00</small></div><div data-en="Map and address&lt;small&gt;Easy to find&lt;/small&gt;">Kart og adresse<small>Finn fram enkelt</small></div></div>
             </div>
           </div>
           <div class="scan"></div>
@@ -449,9 +461,9 @@
         <div class="phone" id="phone">
           <div class="phone-screen">
             <div class="notch"></div>
-            <div class="p-hero">Lokal kvalitet du kan stole på</div>
+            <div class="p-hero" data-en="Local quality you can trust">Lokal kvalitet du kan stole på</div>
             <div class="p-row"></div><div class="p-row s"></div>
-            <div class="p-call">Ring oss</div>
+            <div class="p-call" data-en="Call us">Ring oss</div>
           </div>
         </div>
       </div>
@@ -461,32 +473,32 @@
   <section class="block" id="prov">
     <div class="wrap">
       <div class="head reveal">
-        <span class="mono">[ Prøv selv ]</span>
-        <h2>Samme bedrift. Nytt førsteinntrykk.</h2>
-        <p>Dra i håndtaket og se forskjellen. Eksemplet er laget for å illustrere, ikke en ekte kunde.</p>
+        <span class="mono" data-en="[ Try it ]">[ Prøv selv ]</span>
+        <h2 data-en="Same business. New first impression.">Samme bedrift. Nytt førsteinntrykk.</h2>
+        <p data-en="Drag the handle to see the difference. The example is an illustration, not a real client.">Dra i håndtaket og se forskjellen. Eksemplet er laget for å illustrere, ikke en ekte kunde.</p>
       </div>
       <div class="ba reveal" id="ba">
         <div class="old">
-          <h4>Velkommen til vår hjemmeside!</h4>
-          <p style="text-align:center"><i>Din lokale bedrift siden 1998</i></p>
-          <div class="uc">*** SIDEN ER UNDER KONSTRUKSJON ***</div>
+          <h4 data-en="Welcome to our homepage!">Velkommen til vår hjemmeside!</h4>
+          <p style="text-align:center" data-en="&lt;i&gt;Your local business since 1998&lt;/i&gt;"><i>Din lokale bedrift siden 1998</i></p>
+          <div class="uc" data-en="*** UNDER CONSTRUCTION ***">*** SIDEN ER UNDER KONSTRUKSJON ***</div>
           <table><tr>
-            <td style="width:32%"><a>» Hjem</a><a>» Om oss</a><a>» Tjenester</a><a>» Kontakt</a><a>» Gjestebok</a></td>
-            <td><b>NYHETER:</b><br />12.03.2009: Vi har fått nytt faksnummer!<br />Ring oss på telefon eller send faks.<br /><br />Denne siden vises best i Internet Explorer 6 med oppløsning 1024x768.</td>
+            <td style="width:32%" data-en="&lt;a&gt;» Home&lt;/a&gt;&lt;a&gt;» About us&lt;/a&gt;&lt;a&gt;» Services&lt;/a&gt;&lt;a&gt;» Contact&lt;/a&gt;&lt;a&gt;» Guestbook&lt;/a&gt;"><a>» Hjem</a><a>» Om oss</a><a>» Tjenester</a><a>» Kontakt</a><a>» Gjestebok</a></td>
+            <td data-en="&lt;b&gt;NEWS:&lt;/b&gt;&lt;br /&gt;12.03.2009: We have a new fax number!&lt;br /&gt;Call us or send a fax.&lt;br /&gt;&lt;br /&gt;Best viewed in Internet Explorer 6 at 1024x768."><b>NYHETER:</b><br />12.03.2009: Vi har fått nytt faksnummer!<br />Ring oss på telefon eller send faks.<br /><br />Denne siden vises best i Internet Explorer 6 med oppløsning 1024x768.</td>
           </tr></table>
-          <p class="foot-old">Besøkende: <span class="counter">004213</span> | Sist oppdatert: 12.03.2009 | © 2009</p>
+          <p class="foot-old" data-en="Visitors: &lt;span class=&quot;counter&quot;&gt;004213&lt;/span&gt; | Last updated: 12.03.2009 | © 2009">Besøkende: <span class="counter">004213</span> | Sist oppdatert: 12.03.2009 | © 2009</p>
         </div>
         <div class="new">
-          <div class="new-nav"><div><b>Din Bedrift</b><span>Tjenester</span><span>Om oss</span><span>Kontakt</span></div><span class="call">Ring oss</span></div>
-          <div class="new-hero"><h4>Lokal kvalitet du kan stole på</h4><p>Se hva vi tilbyr, sjekk åpningstidene og bestill på under ett minutt.</p><span class="b">Bestill time</span></div>
-          <div class="new-cards"><div>Tjenester<small>Tydelige priser</small></div><div>Åpent i dag<small>08:00–17:00</small></div><div>Kart og adresse<small>Finn fram enkelt</small></div></div>
+          <div class="new-nav"><div data-en="&lt;b&gt;Your Business&lt;/b&gt;&lt;span&gt;Services&lt;/span&gt;&lt;span&gt;About&lt;/span&gt;&lt;span&gt;Contact&lt;/span&gt;"><b>Din Bedrift</b><span>Tjenester</span><span>Om oss</span><span>Kontakt</span></div><span class="call" data-en="Call us">Ring oss</span></div>
+          <div class="new-hero"><h4 data-en="Local quality you can trust">Lokal kvalitet du kan stole på</h4><p data-en="See what we offer, check opening hours and book in under a minute.">Se hva vi tilbyr, sjekk åpningstidene og bestill på under ett minutt.</p><span class="b" data-en="Book now">Bestill time</span></div>
+          <div class="new-cards"><div data-en="Services&lt;small&gt;Clear prices&lt;/small&gt;">Tjenester<small>Tydelige priser</small></div><div data-en="Open today&lt;small&gt;08:00–17:00&lt;/small&gt;">Åpent i dag<small>08:00–17:00</small></div><div data-en="Map and address&lt;small&gt;Easy to find&lt;/small&gt;">Kart og adresse<small>Finn fram enkelt</small></div></div>
         </div>
         <div class="ba-handle"></div>
-        <span class="ba-label l mono">Før</span>
-        <span class="ba-label r mono">Etter</span>
+        <span class="ba-label l mono" data-en="Before">Før</span>
+        <span class="ba-label r mono" data-en="After">Etter</span>
         <input type="range" min="0" max="100" value="32" aria-label="Sammenlign før og etter" id="ba-range" />
       </div>
-      <p class="ba-hint mono">← Dra for å sammenligne →</p>
+      <p class="ba-hint mono" data-en="← Drag to compare →">← Dra for å sammenligne →</p>
     </div>
   </section>
 
@@ -494,16 +506,16 @@
     <div class="wrap orbit-grid">
       <div class="reveal">
         <div class="head" style="margin-bottom: 0">
-          <span class="mono">[ Alt inkludert ]</span>
-          <h2>Én fast pris. Alt rundt siden er tatt hånd om.</h2>
-          <p>Du får en ferdig nettside, og noen som tar ansvar for den etterpå.</p>
+          <span class="mono" data-en="[ All included ]">[ Alt inkludert ]</span>
+          <h2 data-en="One fixed price. Everything around your site is handled.">Én fast pris. Alt rundt siden er tatt hånd om.</h2>
+          <p data-en="You get a finished website, and someone who takes responsibility for it afterwards.">Du får en ferdig nettside, og noen som tar ansvar for den etterpå.</p>
         </div>
         <ul class="incl-list">
-          <li><span class="mono">01</span><span><b>Laget for mobil.</b> Tydelig ring-knapp og kontaktskjema på alle skjermer.</span></li>
-          <li><span class="mono">02</span><span><b>Sikker og oppdatert.</b> HTTPS, sikkerhetsoppdateringer og sikkerhetskopi.</span></li>
-          <li><span class="mono">03</span><span><b>Lett å finne.</b> Ryddig oppbygd så Google forstår hva du tilbyr.</span></li>
-          <li><span class="mono">04</span><span><b>Endringer inkludert.</b> Send en e-post, så fikser jeg det.</span></li>
-          <li><span class="mono">05</span><span><b>Én kontaktperson.</b> Du snakker direkte med den som lager siden.</span></li>
+          <li><span class="mono">01</span><span data-en="&lt;b&gt;Built for mobile.&lt;/b&gt; A clear call button and contact form on every screen."><b>Laget for mobil.</b> Tydelig ring-knapp og kontaktskjema på alle skjermer.</span></li>
+          <li><span class="mono">02</span><span data-en="&lt;b&gt;Secure and up to date.&lt;/b&gt; HTTPS, security updates and backups."><b>Sikker og oppdatert.</b> HTTPS, sikkerhetsoppdateringer og sikkerhetskopi.</span></li>
+          <li><span class="mono">03</span><span data-en="&lt;b&gt;Easy to find.&lt;/b&gt; Cleanly structured so Google understands what you offer."><b>Lett å finne.</b> Ryddig oppbygd så Google forstår hva du tilbyr.</span></li>
+          <li><span class="mono">04</span><span data-en="&lt;b&gt;Changes included.&lt;/b&gt; Send an email and I’ll take care of it."><b>Endringer inkludert.</b> Send en e-post, så fikser jeg det.</span></li>
+          <li><span class="mono">05</span><span data-en="&lt;b&gt;One point of contact.&lt;/b&gt; You talk directly to the person who builds your site."><b>Én kontaktperson.</b> Du snakker direkte med den som lager siden.</span></li>
         </ul>
       </div>
       <div class="orbit-box reveal" style="--d:.15s" aria-hidden="true">
@@ -511,17 +523,17 @@
           <div class="ring r2"></div>
           <div class="ring r1"></div>
           <div class="spin" style="--t:46s">
-            <div class="node" style="--a:0deg; --r:270px"><div><span class="pill"><i></i>Domene</span></div></div>
+            <div class="node" style="--a:0deg; --r:270px"><div><span class="pill" data-en="&lt;i&gt;&lt;/i&gt;Domain"><i></i>Domene</span></div></div>
             <div class="node" style="--a:60deg; --r:270px"><div><span class="pill w"><i></i>Hosting</span></div></div>
-            <div class="node" style="--a:120deg; --r:270px"><div><span class="pill"><i></i>Sikkerhetskopi</span></div></div>
+            <div class="node" style="--a:120deg; --r:270px"><div><span class="pill" data-en="&lt;i&gt;&lt;/i&gt;Backups"><i></i>Sikkerhetskopi</span></div></div>
             <div class="node" style="--a:180deg; --r:270px"><div><span class="pill w"><i></i>Google</span></div></div>
-            <div class="node" style="--a:240deg; --r:270px"><div><span class="pill"><i></i>Kontaktskjema</span></div></div>
-            <div class="node" style="--a:300deg; --r:270px"><div><span class="pill w"><i></i>Endringer</span></div></div>
+            <div class="node" style="--a:240deg; --r:270px"><div><span class="pill" data-en="&lt;i&gt;&lt;/i&gt;Contact form"><i></i>Kontaktskjema</span></div></div>
+            <div class="node" style="--a:300deg; --r:270px"><div><span class="pill w" data-en="&lt;i&gt;&lt;/i&gt;Changes"><i></i>Endringer</span></div></div>
           </div>
           <div class="spin rev" style="--t:30s">
             <div class="node" style="--a:30deg; --r:160px"><div><span class="pill w"><i></i>HTTPS</span></div></div>
-            <div class="node" style="--a:150deg; --r:160px"><div><span class="pill"><i></i>Mobil</span></div></div>
-            <div class="node" style="--a:270deg; --r:160px"><div><span class="pill w"><i></i>Oppdateringer</span></div></div>
+            <div class="node" style="--a:150deg; --r:160px"><div><span class="pill" data-en="&lt;i&gt;&lt;/i&gt;Mobile"><i></i>Mobil</span></div></div>
+            <div class="node" style="--a:270deg; --r:160px"><div><span class="pill w" data-en="&lt;i&gt;&lt;/i&gt;Updates"><i></i>Oppdateringer</span></div></div>
           </div>
           <div class="core">HP</div>
         </div>
@@ -532,43 +544,43 @@
   <section class="block" id="priser">
     <div class="wrap">
       <div class="head reveal">
-        <span class="mono">[ Priser ]</span>
-        <h2>Enkle, faste priser</h2>
-        <p>Velg mellom en lav oppstartspris eller 0 kr i oppstart. Endelig pris avtales etter at du har sett utkastet.</p>
+        <span class="mono" data-en="[ Pricing ]">[ Priser ]</span>
+        <h2 data-en="Simple, fixed prices">Enkle, faste priser</h2>
+        <p data-en="Choose a low setup fee or 0 NOK setup. The final price is agreed after you’ve seen the draft.">Velg mellom en lav oppstartspris eller 0 kr i oppstart. Endelig pris avtales etter at du har sett utkastet.</p>
       </div>
       <div class="prices">
         <div class="price reveal" style="--d:0s">
-          <h3>Liten</h3>
-          <p class="for">For håndverkere, butikker, restauranter og andre som trenger en ryddig side.</p>
-          <div class="amount">690 kr <small>/ mnd</small></div>
-          <p class="setup">+ 6 000 kr i oppstart</p>
-          <p class="option">Eller <b>0 kr i oppstart og 990 kr/mnd</b> med 12 måneders binding.</p>
-          <ul><li>1–3 sider</li><li>Ring-knapp, kontaktskjema og kart</li><li>Åpningstider, tjenester og bilder</li></ul>
-          <a href="#kontakt" class="btn btn-line">Be om utkast</a>
+          <h3 data-en="Small">Liten</h3>
+          <p class="for" data-en="For tradespeople, shops, restaurants and others who need a clean site.">For håndverkere, butikker, restauranter og andre som trenger en ryddig side.</p>
+          <div class="amount" data-en="690 NOK &lt;small&gt;/ month&lt;/small&gt;">690 kr <small>/ mnd</small></div>
+          <p class="setup" data-en="+ 6 000 NOK setup">+ 6 000 kr i oppstart</p>
+          <p class="option" data-en="Or &lt;b&gt;0 NOK setup and 990 NOK/month&lt;/b&gt; with a 12-month commitment.">Eller <b>0 kr i oppstart og 990 kr/mnd</b> med 12 måneders binding.</p>
+          <ul data-en="&lt;li&gt;1–3 pages&lt;/li&gt;&lt;li&gt;Call button, contact form and map&lt;/li&gt;&lt;li&gt;Opening hours, services and photos&lt;/li&gt;"><li>1–3 sider</li><li>Ring-knapp, kontaktskjema og kart</li><li>Åpningstider, tjenester og bilder</li></ul>
+          <a href="#kontakt" class="btn btn-line" data-en="Request a draft">Be om utkast</a>
         </div>
         <div class="price featured reveal" style="--d:.1s">
-          <span class="badge-top mono">Anbefalt</span>
-          <h3>Mellom</h3>
-          <p class="for">For bedrifter med flere tjenester, ansatte eller kunder som vil vite mer.</p>
-          <div class="amount">990 kr <small>/ mnd</small></div>
-          <p class="setup">+ 12 000 kr i oppstart</p>
-          <p class="option">Eller <b>0 kr i oppstart og 1 290 kr/mnd</b> med 12 måneders binding.</p>
-          <ul><li>Opptil 8 sider</li><li>Prosjektgalleri eller bildegalleri</li><li>Skjema for befaring, booking eller søknad</li><li>Nyheter du kan be meg oppdatere løpende</li></ul>
-          <a href="#kontakt" class="btn btn-primary">Be om utkast</a>
+          <span class="badge-top mono" data-en="Recommended">Anbefalt</span>
+          <h3 data-en="Medium">Mellom</h3>
+          <p class="for" data-en="For businesses with several services, staff, or customers who want to know more.">For bedrifter med flere tjenester, ansatte eller kunder som vil vite mer.</p>
+          <div class="amount" data-en="990 NOK &lt;small&gt;/ month&lt;/small&gt;">990 kr <small>/ mnd</small></div>
+          <p class="setup" data-en="+ 12 000 NOK setup">+ 12 000 kr i oppstart</p>
+          <p class="option" data-en="Or &lt;b&gt;0 NOK setup and 1 290 NOK/month&lt;/b&gt; with a 12-month commitment.">Eller <b>0 kr i oppstart og 1 290 kr/mnd</b> med 12 måneders binding.</p>
+          <ul data-en="&lt;li&gt;Up to 8 pages&lt;/li&gt;&lt;li&gt;Project or photo gallery&lt;/li&gt;&lt;li&gt;Form for site visits, bookings or applications&lt;/li&gt;&lt;li&gt;News you can ask me to update anytime&lt;/li&gt;"><li>Opptil 8 sider</li><li>Prosjektgalleri eller bildegalleri</li><li>Skjema for befaring, booking eller søknad</li><li>Nyheter du kan be meg oppdatere løpende</li></ul>
+          <a href="#kontakt" class="btn btn-primary" data-en="Request a draft">Be om utkast</a>
         </div>
         <div class="price reveal" style="--d:.2s">
-          <h3>Katalog</h3>
-          <p class="for">For bedrifter med mange produkter som kunder vil se før de tar kontakt.</p>
-          <div class="amount">1 490 kr <small>/ mnd</small></div>
-          <p class="setup">+ 12 000 kr i oppstart</p>
-          <p class="option">Eller <b>0 kr i oppstart og 1 990 kr/mnd</b> med 12 måneders binding.</p>
-          <ul><li>Produktkatalog med store bilder</li><li>Prisforespørsel per produkt</li><li>Flere språk ved behov</li><li>Løpende oppdatering av produkter</li></ul>
-          <a href="#kontakt" class="btn btn-line">Be om utkast</a>
+          <h3 data-en="Catalogue">Katalog</h3>
+          <p class="for" data-en="For businesses with many products customers want to see before getting in touch.">For bedrifter med mange produkter som kunder vil se før de tar kontakt.</p>
+          <div class="amount" data-en="1 490 NOK &lt;small&gt;/ month&lt;/small&gt;">1 490 kr <small>/ mnd</small></div>
+          <p class="setup" data-en="+ 12 000 NOK setup">+ 12 000 kr i oppstart</p>
+          <p class="option" data-en="Or &lt;b&gt;0 NOK setup and 1 990 NOK/month&lt;/b&gt; with a 12-month commitment.">Eller <b>0 kr i oppstart og 1 990 kr/mnd</b> med 12 måneders binding.</p>
+          <ul data-en="&lt;li&gt;Product catalogue with large images&lt;/li&gt;&lt;li&gt;Price request per product&lt;/li&gt;&lt;li&gt;Multiple languages if needed&lt;/li&gt;&lt;li&gt;Ongoing product updates&lt;/li&gt;"><li>Produktkatalog med store bilder</li><li>Prisforespørsel per produkt</li><li>Flere språk ved behov</li><li>Løpende oppdatering av produkter</li></ul>
+          <a href="#kontakt" class="btn btn-line" data-en="Request a draft">Be om utkast</a>
         </div>
       </div>
       <div class="included reveal">
-        <strong>Alltid inkludert</strong>
-        <span>Domene, hosting, HTTPS, sikkerhetsoppdateringer, sikkerhetskopi og små endringer i tekst og bilder.</span>
+        <strong data-en="Always included">Alltid inkludert</strong>
+        <span data-en="Domain, hosting, HTTPS, security updates, backups and small changes to text and images.">Domene, hosting, HTTPS, sikkerhetsoppdateringer, sikkerhetskopi og små endringer i tekst og bilder.</span>
       </div>
     </div>
   </section>
@@ -576,15 +588,15 @@
   <section class="block" id="slik">
     <div class="wrap">
       <div class="head reveal">
-        <span class="mono">[ Prosess ]</span>
-        <h2>Slik jobber jeg</h2>
-        <p>Du bruker noen minutter. Jeg gjør resten.</p>
+        <span class="mono" data-en="[ Process ]">[ Prosess ]</span>
+        <h2 data-en="How I work">Slik jobber jeg</h2>
+        <p data-en="You spend a few minutes. I do the rest.">Du bruker noen minutter. Jeg gjør resten.</p>
       </div>
       <div class="steps reveal" id="steps">
-        <div class="step"><span class="mono">01</span><h3>Ta kontakt</h3><p>Send en e-post om bedriften og hva du ønsker. Har du en nettside fra før, ser jeg på den.</p></div>
-        <div class="step"><span class="mono">02</span><h3>Gratis utkast</h3><p>Jeg lager et utkast av forsiden, så du ser hvordan det blir. Det koster ingenting.</p></div>
-        <div class="step"><span class="mono">03</span><h3>Ferdigstilling</h3><p>Du sier hva du vil endre. Jeg flytter over innholdet og gjør siden klar.</p></div>
-        <div class="step"><span class="mono">04</span><h3>Live</h3><p>Siden publiseres på domenet ditt. Deretter drifter og oppdaterer jeg den.</p></div>
+        <div class="step"><span class="mono">01</span><h3 data-en="Get in touch">Ta kontakt</h3><p data-en="Send an email about your business and what you need. If you already have a website, I’ll take a look.">Send en e-post om bedriften og hva du ønsker. Har du en nettside fra før, ser jeg på den.</p></div>
+        <div class="step"><span class="mono">02</span><h3 data-en="Free draft">Gratis utkast</h3><p data-en="I make a draft of the front page so you can see how it will look. It costs nothing.">Jeg lager et utkast av forsiden, så du ser hvordan det blir. Det koster ingenting.</p></div>
+        <div class="step"><span class="mono">03</span><h3 data-en="Finishing">Ferdigstilling</h3><p data-en="You tell me what to change. I move your content over and get the site ready.">Du sier hva du vil endre. Jeg flytter over innholdet og gjør siden klar.</p></div>
+        <div class="step"><span class="mono">04</span><h3>Live</h3><p data-en="The site goes live on your domain. After that, I host and update it.">Siden publiseres på domenet ditt. Deretter drifter og oppdaterer jeg den.</p></div>
       </div>
     </div>
   </section>
@@ -592,17 +604,17 @@
   <section class="block">
     <div class="wrap two">
       <div class="about reveal">
-        <span class="mono" style="color:var(--accent);display:block;margin-bottom:18px">[ Om ]</span>
-        <h2>Om Hamidi Partners</h2>
-        <p>Hamidi Partners drives av meg, Farshad Hamidi. Jeg har bakgrunn i økonomi og programmering, og lager nettsider for bedrifter som vil se profesjonelle ut på nett uten å bruke tid på det selv.</p>
-        <p>Du får én fast kontaktperson som kjenner siden din, og som svarer på e-post.</p>
+        <span class="mono" style="color:var(--accent);display:block;margin-bottom:18px" data-en="[ About ]">[ Om ]</span>
+        <h2 data-en="About Hamidi Partners">Om Hamidi Partners</h2>
+        <p data-en="Hamidi Partners is run by me, Farshad Hamidi. I have a background in economics and programming, and I build websites for businesses that want to look professional online without spending time on it themselves.">Hamidi Partners drives av meg, Farshad Hamidi. Jeg har bakgrunn i økonomi og programmering, og lager nettsider for bedrifter som vil se profesjonelle ut på nett uten å bruke tid på det selv.</p>
+        <p data-en="You get one dedicated contact who knows your site and answers your emails.">Du får én fast kontaktperson som kjenner siden din, og som svarer på e-post.</p>
       </div>
       <div class="reveal" style="--d:.1s">
-        <details><summary>Hva koster det hvis jeg ikke vil gå videre etter utkastet?</summary><p>Ingenting. Utkastet er gratis og uforpliktende.</p></details>
-        <details><summary>Må jeg binde meg?</summary><p>Med oppstartspris er det ingen binding. Velger du 0 kr i oppstart, er bindingstiden 12 måneder.</p></details>
-        <details><summary>Jeg har allerede et domene. Kan jeg beholde det?</summary><p>Ja. Jeg setter opp den nye siden på domenet du har, og e-posten din fortsetter som før.</p></details>
-        <details><summary>Hvem eier innholdet?</summary><p>Du. Domenet, tekstene og bildene er dine. Vil du avslutte, får du med deg innholdet.</p></details>
-        <details><summary>Kan du hjelpe med mer enn nettsider?</summary><p>Ja, for eksempel bookingløsning, skjemaer som sender rett til e-posten din, eller enkel automatisering av rutinearbeid. Spør gjerne.</p></details>
+        <details><summary data-en="What does it cost if I don’t go ahead after the draft?">Hva koster det hvis jeg ikke vil gå videre etter utkastet?</summary><p data-en="Nothing. The draft is free, with no obligation.">Ingenting. Utkastet er gratis og uforpliktende.</p></details>
+        <details><summary data-en="Do I have to commit?">Må jeg binde meg?</summary><p data-en="With a setup fee there is no commitment. If you choose 0 NOK setup, the commitment is 12 months.">Med oppstartspris er det ingen binding. Velger du 0 kr i oppstart, er bindingstiden 12 måneder.</p></details>
+        <details><summary data-en="I already have a domain. Can I keep it?">Jeg har allerede et domene. Kan jeg beholde det?</summary><p data-en="Yes. I set up the new site on your existing domain, and your email keeps working as before.">Ja. Jeg setter opp den nye siden på domenet du har, og e-posten din fortsetter som før.</p></details>
+        <details><summary data-en="Who owns the content?">Hvem eier innholdet?</summary><p data-en="You do. The domain, texts and images are yours. If you leave, you take your content with you.">Du. Domenet, tekstene og bildene er dine. Vil du avslutte, får du med deg innholdet.</p></details>
+        <details><summary data-en="Can you help with more than websites?">Kan du hjelpe med mer enn nettsider?</summary><p data-en="Yes, for example booking systems, forms that send straight to your inbox, or simple automation of routine tasks. Just ask.">Ja, for eksempel bookingløsning, skjemaer som sender rett til e-posten din, eller enkel automatisering av rutinearbeid. Spør gjerne.</p></details>
       </div>
     </div>
   </section>
@@ -610,10 +622,10 @@
   <section class="contact" id="kontakt">
     <div class="planet-wrap" aria-hidden="true"><div class="planet"></div><div class="flare"></div></div>
     <div class="wrap reveal">
-      <span class="mono" style="color:var(--accent);display:block;margin-bottom:20px">[ Neste steg ]</span>
-      <h2>Vil du se hvordan<br />det kan bli?</h2>
-      <p>Send meg navnet på bedriften og eventuelt nettsiden dere har i dag. Du får et gratis utkast av forsiden.</p>
-      <a class="btn btn-light" href="mailto:farshad@hamidipartners.com?subject=Gratis%20utkast%20av%20nettside">Send e-post <span class="arrow">↗</span></a>
+      <span class="mono" style="color:var(--accent);display:block;margin-bottom:20px" data-en="[ Next step ]">[ Neste steg ]</span>
+      <h2 data-en="Want to see what&lt;br /&gt;it could look like?">Vil du se hvordan<br />det kan bli?</h2>
+      <p data-en="Send me your business name and your current website, if you have one. You’ll get a free draft of the front page.">Send meg navnet på bedriften og eventuelt nettsiden dere har i dag. Du får et gratis utkast av forsiden.</p>
+      <a class="btn btn-light" href="mailto:farshad@hamidipartners.com?subject=Gratis%20utkast%20av%20nettside" data-en="Send an email &lt;span class=&quot;arrow&quot;&gt;↗&lt;/span&gt;" data-en-href="mailto:farshad@hamidipartners.com?subject=Free%20website%20draft">Send e-post <span class="arrow">↗</span></a>
       <span class="mail mono">farshad@hamidipartners.com</span>
     </div>
   </section>
@@ -632,6 +644,31 @@
     var fine = window.matchMedia('(pointer: fine)').matches;
     var clamp = function (v, a, b) { return Math.min(b, Math.max(a, v)); };
     var ease = function (t) { return 1 - Math.pow(1 - t, 3); };
+
+    // ---- Language (NO/EN) ----
+    var lang = 'no';
+    try { if (localStorage.getItem('hp-lang') === 'en') lang = 'en'; } catch (e) {}
+    var tEls = document.querySelectorAll('[data-en]');
+    var hEls = document.querySelectorAll('[data-en-href]');
+    tEls.forEach(function (el) { el.dataset.no = el.innerHTML; });
+    hEls.forEach(function (el) { el.dataset.noHref = el.getAttribute('href'); });
+    var titles = { no: document.title, en: 'Hamidi Partners – websites for small businesses' };
+    function applyLang() {
+      tEls.forEach(function (el) { el.innerHTML = lang === 'en' ? el.dataset.en : el.dataset.no; });
+      hEls.forEach(function (el) { el.setAttribute('href', lang === 'en' ? el.dataset.enHref : el.dataset.noHref); });
+      document.documentElement.lang = lang === 'en' ? 'en' : 'nb';
+      document.title = titles[lang];
+      document.querySelectorAll('.lang button').forEach(function (b) { b.setAttribute('aria-pressed', String(b.dataset.l === lang)); });
+    }
+    if (lang === 'en') applyLang();
+    document.querySelectorAll('.lang button').forEach(function (b) {
+      b.addEventListener('click', function () {
+        if (lang === b.dataset.l) return;
+        lang = b.dataset.l;
+        try { localStorage.setItem('hp-lang', lang); } catch (e) {}
+        applyLang(); secure = null; frame();
+      });
+    });
 
     // ---- Starfield ----
     var cv = document.getElementById('stars'), ctx = cv.getContext('2d');
@@ -654,8 +691,67 @@
         ctx.arc(s.x + mx * s.d * 18, s.y + my * s.d * 18, s.r * s.d + .2, 0, 6.283);
         ctx.fill();
       }
+      drawThreads(ts || 0);
       if (!reduce && heroVisible) requestAnimationFrame(draw);
     }
+
+    // ---- Thread sphere ----
+    var tc = document.getElementById('threads'), tx = tc.getContext('2d');
+    var TW, TH, curves = [];
+    function tResize() {
+      var dpr = Math.min(window.devicePixelRatio || 1, 2);
+      TW = tc.clientWidth; TH = tc.clientHeight;
+      tc.width = TW * dpr; tc.height = TH * dpr; tx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+    function norm(v) { var l = Math.hypot(v[0], v[1], v[2]); return [v[0] / l, v[1] / l, v[2] / l]; }
+    function cross(a, b) { return [a[1] * b[2] - a[2] * b[1], a[2] * b[0] - a[0] * b[2], a[0] * b[1] - a[1] * b[0]]; }
+    for (var c = 0; c < 64; c++) {
+      var ax = norm([Math.random() * 2 - 1, Math.random() * 2 - 1, Math.random() * 2 - 1]);
+      var u = norm(cross(ax, Math.abs(ax[0]) < .9 ? [1, 0, 0] : [0, 1, 0]));
+      var v = cross(ax, u);
+      curves.push({ u: u, v: v, k: 2 + Math.floor(Math.random() * 4), ph: Math.random() * 6.28, sp: .4 + Math.random() * .8, warm: Math.random() < .35, off: Math.random() });
+    }
+    function drawThreads(ts) {
+      tx.clearRect(0, 0, TW, TH);
+      var small = TW < 640;
+      var cx = TW * (small ? .5 : .76), cy = TH * (small ? .22 : .36);
+      var R = Math.min(TW, TH) * (small ? .28 : .22);
+      var t = reduce ? 0 : ts / 1000;
+      var ry = t * .12 + mx * .9, rx = .35 + my * .6;
+      var cyr = Math.cos(ry), syr = Math.sin(ry), cxr = Math.cos(rx), sxr = Math.sin(rx);
+      tx.globalCompositeOperation = 'lighter';
+      tx.lineWidth = .7;
+      var SEG = 90;
+      for (var i = 0; i < curves.length; i++) {
+        var q = curves[i];
+        tx.beginPath();
+        var dotX = 0, dotY = 0, dotS = 1, dotT = ((t * .05 * q.sp + q.off) % 1) * SEG;
+        for (var j = 0; j <= SEG; j++) {
+          var a = j / SEG * 6.2832;
+          var r = 1 + .16 * Math.sin(q.k * a + q.ph + t * q.sp);
+          var ca = Math.cos(a) * r, sa = Math.sin(a) * r;
+          var x = q.u[0] * ca + q.v[0] * sa, y = q.u[1] * ca + q.v[1] * sa, z = q.u[2] * ca + q.v[2] * sa;
+          var x1 = x * cyr + z * syr, z1 = -x * syr + z * cyr;
+          var y1 = y * cxr - z1 * sxr, z2 = y * sxr + z1 * cxr;
+          var s = 2.6 / (2.6 - z2);
+          var px = cx + x1 * R * s, py = cy + y1 * R * s;
+          if (j === 0) tx.moveTo(px, py); else tx.lineTo(px, py);
+          if (Math.abs(j - dotT) < .5) { dotX = px; dotY = py; dotS = s; }
+        }
+        tx.strokeStyle = q.warm ? 'rgba(255,130,90,' + (small ? .1 : .16) + ')' : 'rgba(120,170,255,' + (small ? .1 : .16) + ')';
+        tx.stroke();
+        if (!reduce && dotX) {
+          var g = tx.createRadialGradient(dotX, dotY, 0, dotX, dotY, 7 * dotS);
+          g.addColorStop(0, q.warm ? 'rgba(255,190,150,.95)' : 'rgba(200,225,255,.95)');
+          g.addColorStop(1, 'rgba(0,0,0,0)');
+          tx.fillStyle = g;
+          tx.fillRect(dotX - 8 * dotS, dotY - 8 * dotS, 16 * dotS, 16 * dotS);
+        }
+      }
+      tx.globalCompositeOperation = 'source-over';
+    }
+    tResize();
+    window.addEventListener('resize', tResize);
     resize();
     window.addEventListener('resize', resize);
     new IntersectionObserver(function (e) {
@@ -676,7 +772,7 @@
     var url = document.getElementById('url');
     var caps = story.querySelectorAll('.cap');
     var bars = story.querySelectorAll('.progress i');
-    var lastStep = -1, secure = false;
+    var lastStep = -1, secure = null;
 
     function frame() {
       var y = window.scrollY, vh = innerHeight;
@@ -696,9 +792,10 @@
       var w = clamp((p - .33) / .34, 0, 1);
       device.style.setProperty('--wipe', (w * 100) + '%');
       device.style.setProperty('--scan-o', w > 0 && w < 1 ? 1 : 0);
-      if ((w > .5) !== secure) {
+      if (secure === null || (w > .5) !== secure) {
         secure = w > .5;
-        url.innerHTML = secure ? '<span class="good">🔒 https://</span>dinbedrift.no' : '<span class="bad">⚠ Ikke sikker</span> &nbsp;dinbedrift.no';
+        var dom = lang === 'en' ? 'yourbusiness.com' : 'dinbedrift.no';
+        url.innerHTML = secure ? '<span class="good">🔒 https://</span>' + dom : '<span class="bad">⚠ ' + (lang === 'en' ? 'Not secure' : 'Ikke sikker') + '</span> &nbsp;' + dom;
       }
       var ph = ease(clamp((p - .72) / .2, 0, 1));
       phone.style.setProperty('--px', (160 * (1 - ph)) + '%');
