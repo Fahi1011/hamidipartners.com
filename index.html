@@ -9,690 +9,618 @@
   <meta property="og:description" content="Ny nettside med drift inkludert. Gratis utkast først, fast månedspris etterpå." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://hamidipartners.com/" />
-  <meta name="theme-color" content="#0b1224" />
+  <meta name="theme-color" content="#05060a" />
   <link rel="icon" href="favicon.svg" type="image/svg+xml" />
   <link rel="canonical" href="https://hamidipartners.com/" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <script>document.documentElement.classList.add('js')</script>
   <style>
     :root {
-      --night: #0b1224;
-      --ink: #14213d;
-      --ink-soft: #3d4a63;
-      --muted: #6b7489;
-      --line: #e3e6ec;
-      --bg: #fbfaf7;
-      --card: #ffffff;
+      --bg: #05060a;
+      --panel: rgba(255, 255, 255, .04);
+      --panel-2: rgba(255, 255, 255, .07);
+      --border: rgba(255, 255, 255, .1);
+      --text: #e9ecf5;
+      --muted: #8b93a7;
       --accent: #ff6a3d;
-      --accent-dark: #d9481c;
-      --accent-soft: #fff0ea;
-      --gold: #ffb86b;
       --rose: #ff5e7e;
+      --gold: #ffb86b;
+      --blue: #6aa8ff;
       --green: #2fbf71;
-      --radius: 16px;
-      --max: 1160px;
+      --ink: #14213d;
+      --line: #e3e6ec;
+      --max: 1200px;
+      --display: "Space Grotesk", "Inter", system-ui, sans-serif;
+      --mono: "JetBrains Mono", ui-monospace, monospace;
     }
     @property --angle { syntax: "<angle>"; initial-value: 0deg; inherits: false; }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
     body {
-      font-family: "Inter", system-ui, -apple-system, sans-serif;
-      color: var(--ink); background: var(--bg);
-      line-height: 1.6; font-size: 17px; -webkit-font-smoothing: antialiased;
-      overflow-x: hidden;
+      font-family: "Inter", system-ui, -apple-system, sans-serif; color: var(--text); background: var(--bg);
+      line-height: 1.6; font-size: 17px; -webkit-font-smoothing: antialiased; overflow-x: hidden;
     }
     a { color: inherit; }
-    h1, h2, h3 { font-family: "Fraunces", Georgia, serif; font-weight: 600; line-height: 1.12; letter-spacing: -0.015em; }
-    .wrap { max-width: var(--max); margin: 0 auto; padding: 0 20px; }
+    h1, h2, h3 { font-family: var(--display); font-weight: 600; line-height: 1.05; letter-spacing: -0.02em; }
+    .wrap { max-width: var(--max); margin: 0 auto; padding: 0 24px; }
+    .mono { font-family: var(--mono); font-size: 12.5px; letter-spacing: .12em; text-transform: uppercase; }
+
+    /* Film grain over everything */
+    .grain {
+      position: fixed; inset: -50%; z-index: 100; pointer-events: none; opacity: .07;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      animation: grain 1s steps(4) infinite;
+    }
+    @keyframes grain { 25% { transform: translate(-3%, 2%); } 50% { transform: translate(2%, -3%); } 75% { transform: translate(-2%, -2%); } }
 
     /* ---------- Header ---------- */
-    header {
-      position: fixed; inset: 0 0 auto 0; z-index: 50;
-      transition: background .3s, border-color .3s, box-shadow .3s;
-      border-bottom: 1px solid transparent; color: #fff;
-    }
-    header.scrolled {
-      background: rgba(251, 250, 247, .88); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
-      border-color: var(--line); color: var(--ink);
-    }
-    .nav { display: flex; align-items: center; justify-content: space-between; height: 72px; }
-    .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; font-weight: 600; font-size: 18px; }
+    header { position: fixed; inset: 0 0 auto 0; z-index: 60; transition: background .3s, border-color .3s; border-bottom: 1px solid transparent; }
+    header.scrolled { background: rgba(5, 6, 10, .72); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-color: var(--border); }
+    .nav { display: flex; align-items: center; justify-content: space-between; height: 76px; }
+    .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; font-family: var(--display); font-weight: 700; font-size: 19px; letter-spacing: .02em; }
     .logo-mark {
-      width: 36px; height: 36px; border-radius: 10px; color: #fff;
-      background: linear-gradient(135deg, var(--accent), var(--rose));
-      display: grid; place-items: center; font-family: "Fraunces", serif; font-size: 16px;
-      box-shadow: 0 6px 18px -6px rgba(255, 106, 61, .7);
+      width: 36px; height: 36px; border-radius: 10px; display: grid; place-items: center; font-size: 15px; color: #fff;
+      background: linear-gradient(135deg, var(--accent), var(--rose)); box-shadow: 0 0 24px -4px rgba(255, 106, 61, .8);
     }
     .nav-links { display: flex; gap: 30px; align-items: center; }
-    .nav-links a { text-decoration: none; font-size: 15px; font-weight: 500; opacity: .85; transition: opacity .2s; }
-    .nav-links a:hover { opacity: 1; }
+    .nav-links a:not(.btn) { text-decoration: none; color: var(--muted); transition: color .2s; }
+    .nav-links a:not(.btn):hover { color: var(--text); }
     .btn {
-      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-      text-decoration: none; font-weight: 600; font-size: 16px; padding: 14px 24px; border-radius: 12px;
-      transition: transform .2s, box-shadow .2s, background .2s; cursor: pointer; border: 0;
+      display: inline-flex; align-items: center; justify-content: center; gap: 10px; text-decoration: none;
+      font-weight: 600; font-size: 16px; padding: 14px 24px; border-radius: 99px; transition: transform .2s, box-shadow .2s, background .2s;
     }
-    .btn-primary {
-      color: #fff; background: linear-gradient(135deg, var(--accent), var(--rose));
-      box-shadow: 0 10px 30px -10px rgba(255, 94, 126, .8);
-    }
-    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 16px 36px -10px rgba(255, 94, 126, .9); }
-    .btn-glass { color: #fff; background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.2); }
-    .btn-glass:hover { background: rgba(255,255,255,.14); }
-    .btn-ghost { color: var(--ink); background: var(--card); border: 1.5px solid var(--line); }
-    .btn-ghost:hover { border-color: var(--ink-soft); transform: translateY(-1px); }
-    .nav .btn { padding: 10px 18px; font-size: 15px; opacity: 1; }
-    .btn .arrow { transition: transform .2s; }
-    .btn:hover .arrow { transform: translateX(3px); }
+    .btn-light { background: #fff; color: #05060a; }
+    .btn-light:hover { transform: translateY(-2px); box-shadow: 0 10px 40px -10px rgba(255, 255, 255, .5); }
+    .btn-primary { color: #fff; background: linear-gradient(135deg, var(--accent), var(--rose)); box-shadow: 0 10px 40px -12px rgba(255, 94, 126, .9); }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 16px 50px -12px rgba(255, 94, 126, 1); }
+    .btn-line { color: var(--text); border: 1px solid var(--border); background: var(--panel); }
+    .btn-line:hover { background: var(--panel-2); }
+    .nav .btn { padding: 10px 18px; font-size: 14.5px; }
+    .arrow { transition: transform .2s; }
+    .btn:hover .arrow { transform: translate(2px, -2px); }
 
     /* ---------- Hero ---------- */
-    .hero {
-      position: relative; overflow: hidden; color: #fff; background: var(--night);
-      padding: 150px 0 120px; isolation: isolate;
+    .hero { position: relative; height: 100vh; min-height: 680px; overflow: hidden; isolation: isolate; }
+    #stars { position: absolute; inset: 0; z-index: -3; width: 100%; height: 100%; }
+    .planet-wrap { position: absolute; inset: 0; z-index: -2; will-change: transform; }
+    .planet {
+      position: absolute; left: 50%; top: 58%; width: 190vw; aspect-ratio: 1; transform: translateX(-34%); border-radius: 50%;
+      background: radial-gradient(circle at 50% 0%, #1d2848 0%, #0d1222 22%, #06070d 45%);
+      box-shadow:
+        0 -1px 0 0 rgba(190, 220, 255, .95),
+        0 -6px 24px 2px rgba(106, 168, 255, .75),
+        0 -30px 120px 20px rgba(80, 140, 255, .35),
+        0 -80px 260px 60px rgba(60, 100, 255, .15),
+        inset 0 40px 100px -30px rgba(120, 170, 255, .45);
     }
-    .aurora { position: absolute; inset: -20%; z-index: -2; filter: blur(70px); opacity: .75; }
-    .aurora span { position: absolute; border-radius: 50%; mix-blend-mode: screen; }
-    .aurora span:nth-child(1) { width: 46vw; height: 46vw; left: 48%; top: 8%; background: #ff6a3d; animation: drift1 18s ease-in-out infinite alternate; opacity: .55; }
-    .aurora span:nth-child(2) { width: 40vw; height: 40vw; left: 62%; top: 40%; background: #7c5cff; animation: drift2 22s ease-in-out infinite alternate; opacity: .5; }
-    .aurora span:nth-child(3) { width: 36vw; height: 36vw; left: 8%; top: 52%; background: #1fb6ff; animation: drift3 26s ease-in-out infinite alternate; opacity: .35; }
-    @keyframes drift1 { to { transform: translate(-12vw, 10vh) scale(1.15); } }
-    @keyframes drift2 { to { transform: translate(-8vw, -14vh) scale(.9); } }
-    @keyframes drift3 { to { transform: translate(14vw, -8vh) scale(1.2); } }
-    .grid-bg {
-      position: absolute; inset: 0; z-index: -1; opacity: .5;
-      background-image: linear-gradient(rgba(255,255,255,.06) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.06) 1px, transparent 1px);
-      background-size: 56px 56px;
-      mask-image: radial-gradient(ellipse 80% 70% at 50% 40%, #000 30%, transparent 75%);
-      -webkit-mask-image: radial-gradient(ellipse 80% 70% at 50% 40%, #000 30%, transparent 75%);
+    .planet::before {
+      content: ""; position: absolute; inset: 0; border-radius: 50%; opacity: .55; mix-blend-mode: overlay;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='c'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.035' numOctaves='5' seed='7'/%3E%3CfeColorMatrix values='0 0 0 0 .5  0 0 0 0 .6  0 0 0 0 .8  0 0 0 1.6 -.5'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23c)'/%3E%3C/svg%3E");
+      mask-image: radial-gradient(circle at 50% 0%, #000 8%, transparent 30%);
+      -webkit-mask-image: radial-gradient(circle at 50% 0%, #000 8%, transparent 30%);
     }
-    .hero-grid { display: grid; grid-template-columns: 1fr 1.05fr; gap: 40px; align-items: center; }
-    .eyebrow {
-      display: inline-flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 600;
-      color: #ffd2c2; background: rgba(255,106,61,.12); border: 1px solid rgba(255,106,61,.35);
-      padding: 6px 14px; border-radius: 99px; margin-bottom: 24px;
+    .flare {
+      position: absolute; left: 50%; top: 58%; width: 60vw; height: 22vw; transform: translate(-30%, -55%);
+      background: radial-gradient(ellipse at center, rgba(255, 140, 90, .35), rgba(255, 94, 126, .12) 40%, transparent 70%);
+      filter: blur(20px); mix-blend-mode: screen;
     }
-    .eyebrow i { width: 7px; height: 7px; border-radius: 50%; background: var(--green); box-shadow: 0 0 0 4px rgba(47,191,113,.25); animation: pulse 2s infinite; }
-    @keyframes pulse { 50% { box-shadow: 0 0 0 8px rgba(47,191,113,0); } }
-    .hero h1 { font-size: clamp(42px, 6vw, 72px); margin-bottom: 22px; }
-    .shine {
-      font-style: italic; background: linear-gradient(90deg, var(--accent), var(--gold), var(--rose), var(--accent));
-      background-size: 300% 100%; -webkit-background-clip: text; background-clip: text; color: transparent;
-      animation: shine 6s linear infinite;
+    .hero-inner { position: relative; height: 100%; display: flex; flex-direction: column; justify-content: flex-end; padding-bottom: 9vh; }
+    .hero-tag { color: #ffcbb8; margin-bottom: 22px; display: flex; align-items: center; gap: 10px; }
+    .hero-tag i { width: 7px; height: 7px; border-radius: 50%; background: var(--green); box-shadow: 0 0 12px var(--green); animation: blink 2s infinite; }
+    @keyframes blink { 50% { opacity: .35; } }
+    .hero h1 { font-size: clamp(44px, 7.4vw, 108px); text-transform: uppercase; max-width: 1050px; letter-spacing: -0.035em; line-height: .95; }
+    .glow {
+      background: linear-gradient(90deg, var(--accent), var(--gold), var(--rose), var(--accent)); background-size: 300% 100%;
+      -webkit-background-clip: text; background-clip: text; color: transparent; animation: shine 6s linear infinite;
+      filter: drop-shadow(0 0 30px rgba(255, 106, 61, .35));
     }
     @keyframes shine { to { background-position: 300% 0; } }
-    .lead { font-size: 19px; color: rgba(255,255,255,.75); max-width: 520px; margin-bottom: 34px; }
-    .hero-cta { display: flex; gap: 12px; flex-wrap: wrap; }
-    .hero-note { margin-top: 20px; font-size: 14px; color: rgba(255,255,255,.55); }
+    .hero-bottom { display: flex; justify-content: space-between; align-items: flex-end; gap: 30px; margin-top: 30px; flex-wrap: wrap; }
+    .hero-lead { max-width: 520px; color: rgba(233, 236, 245, .72); font-size: 17px; }
+    .hero-cta { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 24px; }
+    .hero-links { display: grid; gap: 10px; text-align: right; }
+    .hero-links a { text-decoration: none; color: var(--muted); transition: color .2s; }
+    .hero-links a:hover { color: var(--text); }
+    .scroll-cue { position: absolute; left: 50%; bottom: 22px; transform: translateX(-50%); color: var(--muted); display: flex; flex-direction: column; align-items: center; gap: 8px; }
+    .scroll-cue span { width: 1px; height: 38px; background: linear-gradient(var(--muted), transparent); animation: cue 2s ease-in-out infinite; transform-origin: top; }
+    @keyframes cue { 0% { transform: scaleY(0); } 50% { transform: scaleY(1); } 100% { transform: scaleY(1); opacity: 0; } }
 
-    /* 3D scene */
-    .scene { perspective: 1400px; height: 480px; position: relative; }
-    .stage {
-      position: absolute; inset: 0; transform-style: preserve-3d;
-      transform: rotateX(var(--rx, 12deg)) rotateY(var(--ry, -20deg));
-      transition: transform .6s cubic-bezier(.2,.8,.2,1);
+    /* ---------- Scroll story ---------- */
+    .story { position: relative; height: 340vh; }
+    .sticky { position: sticky; top: 0; height: 100vh; overflow: hidden; display: grid; grid-template-columns: 340px 1fr; gap: 40px; align-items: center; }
+    .story::before {
+      content: ""; position: absolute; inset: 0; pointer-events: none;
+      background: radial-gradient(ellipse 50% 30% at 65% 50%, rgba(106, 168, 255, .1), transparent 70%);
     }
-    .layer { position: absolute; transform: translateZ(var(--z, 0)); transform-style: preserve-3d; }
-    .browser {
-      --z: 0px; left: 4%; top: 40px; width: 88%;
-      background: #fff; color: var(--ink); border-radius: 14px; overflow: hidden;
-      box-shadow: 0 50px 90px -30px rgba(0,0,0,.7), 0 0 0 1px rgba(255,255,255,.1);
+    .captions { position: relative; height: 260px; }
+    .cap { position: absolute; inset: 0; opacity: 0; transform: translateY(20px); transition: opacity .5s, transform .5s; }
+    .cap.on { opacity: 1; transform: none; }
+    .cap .mono { color: var(--accent); display: block; margin-bottom: 14px; }
+    .cap h3 { font-size: clamp(30px, 3.2vw, 44px); text-transform: uppercase; margin-bottom: 14px; }
+    .cap p { color: var(--muted); font-size: 16.5px; }
+    .progress { display: flex; gap: 8px; margin-top: 26px; }
+    .progress span { height: 3px; width: 40px; border-radius: 2px; background: var(--border); overflow: hidden; position: relative; }
+    .progress span i { position: absolute; inset: 0; background: linear-gradient(90deg, var(--accent), var(--rose)); transform-origin: left; transform: scaleX(0); }
+    .viewport { perspective: 1600px; position: relative; height: min(560px, 70vh); }
+    .device {
+      position: absolute; left: 0; right: 0; top: 0; bottom: 0; margin: auto; width: min(820px, 100%); height: 100%;
+      border-radius: 16px; overflow: hidden; background: #fff; transform-style: preserve-3d;
+      transform: rotateX(var(--drx, 28deg)) rotateY(var(--dry, -26deg)) scale(var(--ds, .78));
+      box-shadow: 0 60px 120px -40px rgba(0, 0, 0, .9), 0 0 0 1px rgba(255, 255, 255, .12), 0 0 80px -20px rgba(106, 168, 255, .35);
     }
-    .browser-bar { display: flex; gap: 6px; align-items: center; padding: 11px 14px; background: #f3f4f7; border-bottom: 1px solid var(--line); }
+    .chrome { position: absolute; inset: 0 0 auto 0; height: 40px; z-index: 3; display: flex; gap: 6px; align-items: center; padding: 0 14px; background: #eef0f4; border-bottom: 1px solid #dcdfe6; }
     .dot { width: 10px; height: 10px; border-radius: 50%; }
     .dot:nth-child(1) { background: #ff5f57; } .dot:nth-child(2) { background: #febc2e; } .dot:nth-child(3) { background: #28c840; }
-    .url { margin-left: 10px; flex: 1; background: #fff; border: 1px solid var(--line); border-radius: 6px; font-size: 12px; color: var(--muted); padding: 4px 10px; }
-    .url b { color: #1f9d55; font-weight: 600; }
-    .mini-nav { display: flex; justify-content: space-between; align-items: center; padding: 12px 18px; }
-    .mini-logo { width: 70px; height: 10px; border-radius: 5px; background: var(--ink); }
-    .mini-links { display: flex; gap: 8px; }
-    .mini-links span { width: 34px; height: 7px; border-radius: 4px; background: #dfe3ea; }
-    .mini-hero {
-      margin: 0 18px; border-radius: 10px; padding: 26px 22px; color: #fff; position: relative; overflow: hidden;
-      background: linear-gradient(120deg, #14213d, #2a3f73 60%, #ff6a3d 140%);
-    }
-    .bar { height: 10px; border-radius: 5px; background: rgba(255,255,255,.3); margin-bottom: 9px; }
-    .bar.lg { height: 16px; width: 66%; background: rgba(255,255,255,.95); }
-    .bar.md { width: 82%; } .bar.sm { width: 50%; }
-    .mini-btn { display: inline-block; margin-top: 8px; background: linear-gradient(135deg, var(--accent), var(--rose)); border-radius: 7px; width: 104px; height: 28px; }
-    .mini-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; padding: 14px 18px 18px; }
-    .mini-card { border: 1px solid var(--line); border-radius: 9px; padding: 11px; }
-    .mini-card .ic { width: 24px; height: 24px; border-radius: 7px; background: var(--accent-soft); margin-bottom: 8px; }
-    .mini-card .ln { height: 6px; border-radius: 3px; background: #e8ebf0; margin-bottom: 5px; }
-    .mini-card .ln.s { width: 60%; }
+    .url { margin-left: 10px; flex: 1; max-width: 380px; background: #fff; border: 1px solid #dcdfe6; border-radius: 6px; font-size: 12px; color: #6b7489; padding: 3px 10px; font-family: "Inter", sans-serif; white-space: nowrap; overflow: hidden; }
+    .url .bad { color: #d93025; font-weight: 600; }
+    .url .good { color: #1f9d55; font-weight: 600; }
+    .screen { position: absolute; inset: 40px 0 0 0; }
+    .scan { position: absolute; top: 40px; bottom: 0; width: 2px; z-index: 4; left: var(--wipe, 0%); background: #fff; box-shadow: 0 0 18px 4px rgba(106, 168, 255, .9), 0 0 60px 10px rgba(255, 106, 61, .5); opacity: var(--scan-o, 0); }
     .phone {
-      --z: 110px; right: -2%; top: 170px; width: 150px;
-      background: #0f1629; border-radius: 26px; padding: 9px;
-      box-shadow: 0 40px 70px -20px rgba(0,0,0,.8), inset 0 0 0 1px rgba(255,255,255,.12);
+      position: absolute; right: -10px; bottom: -20px; width: 170px; z-index: 5; background: #0f1629; border-radius: 28px; padding: 9px;
+      box-shadow: 0 40px 80px -20px rgba(0, 0, 0, .9), inset 0 0 0 1px rgba(255, 255, 255, .15);
+      transform: translateX(var(--px, 160%)) rotate(var(--pr, 8deg)); opacity: var(--po, 0);
     }
-    .phone-screen { background: #fff; border-radius: 19px; padding: 14px 10px 12px; }
+    .phone-screen { background: #fff; border-radius: 20px; padding: 14px 10px 12px; color: var(--ink); }
     .notch { width: 46px; height: 5px; border-radius: 3px; background: #0f1629; margin: -6px auto 10px; }
-    .phone-hero { border-radius: 9px; height: 64px; background: linear-gradient(140deg, #14213d, #ff6a3d); margin-bottom: 9px; }
-    .phone-screen .bar { background: #e6e9ef; height: 7px; }
-    .phone-call { margin-top: 10px; background: var(--green); color: #fff; font-size: 11px; font-weight: 600; text-align: center; border-radius: 8px; padding: 7px 0; }
-    .chip {
-      display: flex; align-items: center; gap: 8px; white-space: nowrap;
-      background: rgba(255,255,255,.95); color: var(--ink); font-size: 13px; font-weight: 600;
-      padding: 10px 14px; border-radius: 12px; box-shadow: 0 20px 40px -14px rgba(0,0,0,.6);
-      animation: bob 5s ease-in-out infinite;
-    }
-    .chip .ck { width: 20px; height: 20px; border-radius: 50%; display: grid; place-items: center; color: #fff; font-size: 11px; }
-    .c1 { --z: 170px; left: -4%; top: 120px; } .c1 .ck { background: var(--green); }
-    .c2 { --z: 140px; right: 10%; top: 0; animation-delay: -1.5s; } .c2 .ck { background: #1fb6ff; }
-    .c3 { --z: 200px; left: 18%; top: 400px; animation-delay: -3s; } .c3 .ck { background: var(--accent); }
-    @keyframes bob { 50% { translate: 0 -12px; } }
+    .p-hero { border-radius: 10px; padding: 12px 10px; background: linear-gradient(140deg, #14213d, #2a3f73 60%, #ff6a3d 140%); color: #fff; font-family: var(--display); font-size: 13px; line-height: 1.15; margin-bottom: 8px; }
+    .p-row { height: 7px; border-radius: 4px; background: #e6e9ef; margin-bottom: 6px; }
+    .p-row.s { width: 60%; }
+    .p-call { margin-top: 8px; background: var(--green); color: #fff; font-size: 11px; font-weight: 600; text-align: center; border-radius: 8px; padding: 7px 0; font-family: "Inter", sans-serif; }
 
-    /* Marquee */
-    .marquee { background: var(--night); border-top: 1px solid rgba(255,255,255,.08); overflow: hidden; padding: 18px 0; }
-    .track { display: flex; width: max-content; animation: scroll 32s linear infinite; }
-    .track span { color: rgba(255,255,255,.65); font-size: 15px; font-weight: 500; padding: 0 28px; display: flex; align-items: center; gap: 28px; white-space: nowrap; }
-    .track span::after { content: "✦"; color: var(--accent); }
-    @keyframes scroll { to { transform: translateX(-50%); } }
-
-    /* ---------- Sections ---------- */
-    section { padding: 100px 0; }
-    .section-head { max-width: 660px; margin-bottom: 50px; }
-    .kicker { font-size: 13px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--accent-dark); margin-bottom: 12px; display: block; }
-    .section-head h2 { font-size: clamp(32px, 4vw, 46px); margin-bottom: 14px; }
-    .section-head p { color: var(--ink-soft); font-size: 18px; }
-    .alt { background: var(--card); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
-
-    .js .reveal { opacity: 0; transform: translateY(30px); transition: opacity .8s cubic-bezier(.2,.8,.2,1), transform .8s cubic-bezier(.2,.8,.2,1); transition-delay: var(--d, 0s); }
-    .js .reveal.in { opacity: 1; transform: none; }
-
-    /* Signs */
-    .signs { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
-    .sign { background: var(--bg); border: 1px solid var(--line); border-radius: var(--radius); padding: 24px; position: relative; overflow: hidden; }
-    .sign::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: linear-gradient(var(--accent), var(--rose)); }
-    .sign strong { display: block; font-size: 16px; margin-bottom: 6px; }
-    .sign span { color: var(--muted); font-size: 15px; }
-
-    /* Before / after */
-    .ba { position: relative; border-radius: 20px; overflow: hidden; height: 460px; box-shadow: 0 40px 80px -40px rgba(20,33,61,.45); border: 1px solid var(--line); user-select: none; touch-action: pan-y; }
-    .ba-pane { position: absolute; inset: 0; }
-    .old {
-      background: #f4ecd6; font-family: "Times New Roman", Times, serif; color: #000; padding: 22px 28px; font-size: 15px;
-    }
-    .old h4 { font-size: 28px; color: #800000; text-align: center; font-weight: bold; margin-bottom: 6px; }
+    /* Old + new mock sites (used in story and slider) */
+    .old { position: absolute; inset: 0; background: #f4ecd6; font-family: "Times New Roman", Times, serif; color: #000; padding: 22px 28px; font-size: 15px; overflow: hidden; line-height: 1.4; }
+    .old h4 { font-size: 28px; color: #800000; text-align: center; font-weight: bold; margin-bottom: 4px; }
     .old .uc { background: repeating-linear-gradient(45deg, #ffd800 0 14px, #000 14px 28px); color: #fff; text-align: center; font-weight: bold; padding: 4px; margin: 10px 0; text-shadow: 1px 1px #000; }
     .old table { width: 100%; border: 2px outset #999; border-collapse: separate; background: #fff; margin-top: 8px; }
     .old td { border: 1px inset #999; padding: 8px; vertical-align: top; }
     .old a { color: #0000ee; text-decoration: underline; display: block; }
     .old .counter { font-family: "Courier New", monospace; background: #000; color: #0f0; padding: 1px 6px; display: inline-block; }
     .old .foot-old { text-align: center; font-size: 12px; color: #555; margin-top: 12px; }
-    .new { background: #fff; clip-path: inset(0 0 0 var(--pos, 32%)); font-family: "Inter", sans-serif; }
-    .new-nav { display: flex; justify-content: space-between; align-items: center; padding: 18px 30px; }
-    .new-nav b { font-family: "Fraunces", serif; font-size: 20px; color: var(--ink); }
-    .new-nav span { font-size: 13px; color: var(--muted); margin-left: 18px; }
+    .new { position: absolute; inset: 0; background: #fff; font-family: "Inter", sans-serif; color: var(--ink); overflow: hidden; line-height: 1.5; }
+    .new-nav { display: flex; justify-content: space-between; align-items: center; padding: 16px 28px; }
+    .new-nav b { font-family: var(--display); font-size: 19px; }
+    .new-nav span { font-size: 13px; color: #6b7489; margin-left: 18px; }
     .new-nav .call { background: var(--green); color: #fff; padding: 8px 14px; border-radius: 9px; font-size: 13px; font-weight: 600; margin: 0; }
-    .new-hero {
-      margin: 0 30px; border-radius: 16px; padding: 44px 36px; color: #fff; text-align: center;
-      background: linear-gradient(120deg, #14213d 0%, #233a6e 55%, #ff6a3d 130%);
-    }
-    .new-hero h4 { font-family: "Fraunces", serif; font-size: 32px; line-height: 1.15; margin: 0 auto 10px; max-width: 460px; }
+    .new-hero { margin: 0 28px; border-radius: 16px; padding: 40px 34px; color: #fff; text-align: center; background: linear-gradient(120deg, #14213d 0%, #233a6e 55%, #ff6a3d 130%); }
+    .new-hero h4 { font-family: var(--display); font-size: 32px; line-height: 1.1; margin: 0 auto 10px; max-width: 460px; letter-spacing: -.02em; }
     .new-hero p { opacity: .8; max-width: 420px; font-size: 15px; margin: 0 auto 18px; }
     .new-hero .b { display: inline-block; background: linear-gradient(135deg, var(--accent), var(--rose)); padding: 10px 18px; border-radius: 10px; font-weight: 600; font-size: 14px; }
-    .new-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; padding: 18px 30px; }
-    .new-cards div { border: 1px solid var(--line); border-radius: 12px; padding: 14px; font-size: 14px; font-weight: 600; color: var(--ink); }
-    .new-cards div small { display: block; color: var(--muted); font-weight: 400; margin-top: 2px; }
-    .ba-handle { position: absolute; top: 0; bottom: 0; left: var(--pos, 32%); width: 3px; background: #fff; transform: translateX(-50%); box-shadow: 0 0 20px rgba(0,0,0,.35); pointer-events: none; }
+    .new-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; padding: 18px 28px; }
+    .new-cards div { border: 1px solid var(--line); border-radius: 12px; padding: 14px; font-size: 14px; font-weight: 600; text-align: center; }
+    .new-cards div small { display: block; color: #6b7489; font-weight: 400; margin-top: 2px; }
+    .story .new { clip-path: inset(0 calc(100% - var(--wipe, 0%)) 0 0); }
+
+    /* ---------- Generic sections ---------- */
+    section.block { padding: 130px 0; position: relative; }
+    .head { max-width: 720px; margin-bottom: 56px; }
+    .head .mono { color: var(--accent); display: block; margin-bottom: 18px; }
+    .head h2 { font-size: clamp(36px, 5vw, 68px); text-transform: uppercase; letter-spacing: -0.03em; margin-bottom: 18px; }
+    .head p { color: var(--muted); font-size: 18px; }
+    .js .reveal { opacity: 0; transform: translateY(40px); filter: blur(6px); transition: opacity 1s cubic-bezier(.2,.8,.2,1), transform 1s cubic-bezier(.2,.8,.2,1), filter 1s; transition-delay: var(--d, 0s); }
+    .js .reveal.in { opacity: 1; transform: none; filter: none; }
+
+    /* Slider */
+    .ba { position: relative; border-radius: 20px; overflow: hidden; height: 480px; border: 1px solid var(--border); user-select: none; touch-action: pan-y; box-shadow: 0 0 120px -40px rgba(106, 168, 255, .45); }
+    .ba .new { clip-path: inset(0 0 0 var(--pos, 32%)); }
+    .ba-handle { position: absolute; top: 0; bottom: 0; left: var(--pos, 32%); width: 2px; background: #fff; transform: translateX(-50%); box-shadow: 0 0 18px 4px rgba(106, 168, 255, .8); pointer-events: none; }
     .ba-handle::after {
       content: "⟷"; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-      width: 48px; height: 48px; border-radius: 50%; background: #fff; color: var(--ink);
-      display: grid; place-items: center; font-size: 20px; box-shadow: 0 10px 30px -6px rgba(0,0,0,.45);
+      width: 52px; height: 52px; border-radius: 50%; background: #fff; color: var(--ink); display: grid; place-items: center; font-size: 20px;
+      box-shadow: 0 0 0 6px rgba(255, 255, 255, .15), 0 10px 30px -6px rgba(0, 0, 0, .6);
     }
-    .ba-label { position: absolute; bottom: 16px; font-size: 12px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; padding: 6px 10px; border-radius: 8px; pointer-events: none; }
-    .ba-label.l { left: 16px; background: rgba(0,0,0,.7); color: #fff; }
-    .ba-label.r { right: 16px; background: linear-gradient(135deg, var(--accent), var(--rose)); color: #fff; }
+    .ba-label { position: absolute; bottom: 16px; padding: 6px 10px; border-radius: 8px; pointer-events: none; color: #fff; }
+    .ba-label.l { left: 16px; background: rgba(0, 0, 0, .75); }
+    .ba-label.r { right: 16px; background: linear-gradient(135deg, var(--accent), var(--rose)); }
     .ba input { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; cursor: ew-resize; margin: 0; }
-    .ba-hint { text-align: center; color: var(--muted); font-size: 14px; margin-top: 16px; }
+    .ba-hint { text-align: center; color: var(--muted); margin-top: 18px; }
 
-    /* Tilt cards */
-    .tilt { transform-style: preserve-3d; transform: perspective(900px) rotateX(var(--tx, 0)) rotateY(var(--ty, 0)); transition: transform .4s cubic-bezier(.2,.8,.2,1), box-shadow .4s; will-change: transform; position: relative; }
-    .tilt::after {
-      content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; opacity: 0; transition: opacity .3s;
-      background: radial-gradient(420px circle at var(--mx, 50%) var(--my, 50%), rgba(255,140,100,.16), transparent 45%);
+    /* Orbit */
+    #inkludert { overflow: hidden; }
+    .orbit-grid { display: grid; grid-template-columns: 1fr 1.1fr; gap: 40px; align-items: center; }
+    .orbit-box { position: relative; height: 600px; }
+    .orbit { position: absolute; left: 50%; top: 50%; width: 600px; height: 600px; transform: translate(-50%, -50%); }
+    .core {
+      position: absolute; left: 50%; top: 50%; width: 120px; height: 120px; transform: translate(-50%, -50%); border-radius: 50%;
+      display: grid; place-items: center; font-family: var(--display); font-weight: 700; font-size: 30px; color: #fff;
+      background: radial-gradient(circle at 35% 30%, #ff9b73, var(--accent) 45%, #b8324f 100%);
+      box-shadow: 0 0 60px 10px rgba(255, 106, 61, .45), 0 0 160px 40px rgba(255, 94, 126, .2);
     }
-    .tilt:hover::after { opacity: 1; }
-    .tilt:hover { box-shadow: 0 30px 60px -30px rgba(20,33,61,.4); }
-
-    .features { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-    .feature { padding: 30px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--card); }
-    .feature .icon {
-      width: 48px; height: 48px; border-radius: 14px; display: grid; place-items: center; margin-bottom: 18px;
-      background: linear-gradient(135deg, var(--accent-soft), #ffe3ec); transform: translateZ(30px);
+    .core::after { content: ""; position: absolute; inset: -18px; border-radius: 50%; border: 1px solid rgba(255, 140, 100, .35); animation: ping 3s ease-out infinite; }
+    @keyframes ping { from { transform: scale(.9); opacity: 1; } to { transform: scale(1.6); opacity: 0; } }
+    .ring { position: absolute; left: 50%; top: 50%; border-radius: 50%; border: 1px dashed rgba(255, 255, 255, .14); transform: translate(-50%, -50%); }
+    .ring.r1 { width: 320px; height: 320px; }
+    .ring.r2 { width: 540px; height: 540px; border-style: solid; border-color: rgba(255, 255, 255, .07); }
+    .spin { position: absolute; inset: 0; animation: rot var(--t, 40s) linear infinite; }
+    .spin.rev { animation-direction: reverse; }
+    @keyframes rot { to { transform: rotate(360deg); } }
+    .node { position: absolute; left: 50%; top: 50%; width: 0; height: 0; transform: rotate(var(--a)) translateX(var(--r)) rotate(calc(-1 * var(--a))); }
+    .node > div { position: absolute; left: 0; top: 0; animation: rot var(--t, 40s) linear infinite reverse; }
+    .spin.rev .node > div { animation-direction: normal; }
+    .pill {
+      position: absolute; left: 0; top: 0; transform: translate(-50%, -50%);
+      display: flex; align-items: center; gap: 8px; white-space: nowrap; padding: 9px 14px; border-radius: 99px;
+      background: rgba(12, 14, 22, .9); border: 1px solid var(--border); font-size: 14px; font-weight: 500;
+      box-shadow: 0 0 30px -8px rgba(106, 168, 255, .35);
     }
-    .feature svg { width: 24px; height: 24px; color: var(--accent-dark); }
-    .feature h3 { font-size: 21px; margin-bottom: 8px; transform: translateZ(20px); }
-    .feature p { color: var(--ink-soft); font-size: 16px; }
+    .pill i { width: 8px; height: 8px; border-radius: 50%; background: var(--blue); box-shadow: 0 0 10px var(--blue); }
+    .pill.w i { background: var(--accent); box-shadow: 0 0 10px var(--accent); }
+    .incl-list { list-style: none; display: grid; gap: 14px; margin-top: 30px; }
+    .incl-list li { display: flex; gap: 14px; align-items: baseline; color: var(--muted); }
+    .incl-list li b { color: var(--text); font-weight: 600; }
+    .incl-list .mono { color: var(--accent); flex: none; width: 34px; }
 
     /* Pricing */
-    .prices { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; align-items: stretch; }
-    .price { background: var(--card); border: 1px solid var(--line); border-radius: 20px; padding: 32px 28px; display: flex; flex-direction: column; }
+    .prices { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+    .price { position: relative; background: var(--panel); border: 1px solid var(--border); border-radius: 22px; padding: 34px 28px; display: flex; flex-direction: column; overflow: hidden; }
+    .price::after { content: ""; position: absolute; inset: 0; pointer-events: none; opacity: 0; transition: opacity .3s; background: radial-gradient(400px circle at var(--mx, 50%) var(--my, 50%), rgba(255, 255, 255, .08), transparent 45%); }
+    .price:hover::after { opacity: 1; }
     .price.featured {
-      color: #fff; border: 2px solid transparent;
-      background: linear-gradient(var(--night), var(--night)) padding-box,
-                  conic-gradient(from var(--angle), var(--accent), var(--gold), var(--rose), #7c5cff, var(--accent)) border-box;
-      animation: spin 5s linear infinite;
-      box-shadow: 0 30px 60px -30px rgba(255, 94, 126, .55);
+      border: 1px solid transparent;
+      background: linear-gradient(#0c0e17, #0c0e17) padding-box, conic-gradient(from var(--angle), var(--accent), var(--gold), var(--rose), var(--blue), var(--accent)) border-box;
+      animation: spin 5s linear infinite; box-shadow: 0 0 80px -30px rgba(255, 94, 126, .6);
     }
     @keyframes spin { to { --angle: 360deg; } }
-    .badge-top { align-self: flex-start; font-size: 12px; font-weight: 600; padding: 4px 10px; border-radius: 99px; background: linear-gradient(135deg, var(--accent), var(--rose)); color: #fff; margin-bottom: 14px; }
-    .price h3 { font-size: 26px; margin-bottom: 4px; }
-    .price .for { color: var(--muted); font-size: 15px; margin-bottom: 24px; min-height: 48px; }
-    .featured .for { color: rgba(255,255,255,.65); }
-    .amount { font-family: "Fraunces", serif; font-size: 40px; font-weight: 600; line-height: 1; }
-    .amount small { font-family: "Inter", sans-serif; font-size: 15px; color: var(--muted); font-weight: 500; }
-    .featured .amount small { color: rgba(255,255,255,.6); }
-    .setup { font-size: 15px; color: var(--ink-soft); margin: 10px 0 4px; }
-    .featured .setup { color: rgba(255,255,255,.8); }
-    .option { font-size: 14px; color: var(--muted); padding: 11px 13px; background: var(--bg); border-radius: 10px; margin: 14px 0 22px; }
-    .option b { color: var(--ink); }
-    .featured .option { background: rgba(255,255,255,.07); color: rgba(255,255,255,.7); }
-    .featured .option b { color: #fff; }
-    .price ul { list-style: none; display: grid; gap: 10px; align-content: start; margin-bottom: 28px; flex: 1; }
-    .price li { padding-left: 28px; position: relative; font-size: 15px; color: var(--ink-soft); }
-    .featured li { color: rgba(255,255,255,.85); }
-    .price li::before {
-      content: "✓"; position: absolute; left: 0; top: 2px; width: 18px; height: 18px; border-radius: 50%;
-      background: var(--accent-soft); color: var(--accent-dark); font-size: 11px; font-weight: 700; display: grid; place-items: center;
-    }
-    .featured li::before { background: rgba(255,106,61,.25); color: #ffb39b; }
-    .included {
-      margin-top: 30px; padding: 24px 28px; border-radius: 18px; background: linear-gradient(120deg, var(--accent-soft), #ffe9f0);
-      display: grid; grid-template-columns: auto 1fr; gap: 6px 26px; align-items: center; border: 1px solid #ffd9cc;
-    }
-    .included strong { font-family: "Fraunces", serif; font-size: 21px; font-weight: 600; }
-    .included span { color: var(--ink-soft); font-size: 15px; }
+    .badge-top { align-self: flex-start; color: #fff; padding: 5px 10px; border-radius: 99px; background: linear-gradient(135deg, var(--accent), var(--rose)); margin-bottom: 16px; }
+    .price h3 { font-size: 28px; text-transform: uppercase; margin-bottom: 6px; }
+    .price .for { color: var(--muted); font-size: 15px; margin-bottom: 26px; min-height: 48px; }
+    .amount { font-family: var(--display); font-size: 46px; font-weight: 600; line-height: 1; letter-spacing: -.03em; }
+    .amount small { font-family: "Inter", sans-serif; font-size: 15px; color: var(--muted); font-weight: 500; letter-spacing: 0; }
+    .setup { font-size: 15px; color: rgba(233, 236, 245, .8); margin: 10px 0 4px; }
+    .option { font-size: 14px; color: var(--muted); padding: 12px 14px; background: var(--panel); border: 1px solid var(--border); border-radius: 12px; margin: 16px 0 24px; }
+    .option b { color: var(--text); }
+    .price ul { list-style: none; display: grid; gap: 11px; align-content: start; margin-bottom: 30px; flex: 1; }
+    .price li { padding-left: 26px; position: relative; font-size: 15px; color: rgba(233, 236, 245, .82); }
+    .price li::before { content: ""; position: absolute; left: 2px; top: 9px; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 10px var(--accent); }
+    .included { margin-top: 26px; padding: 22px 28px; border-radius: 18px; border: 1px solid var(--border); background: var(--panel); display: grid; grid-template-columns: auto 1fr; gap: 6px 26px; align-items: center; }
+    .included strong { font-family: var(--display); font-size: 20px; text-transform: uppercase; }
+    .included span { color: var(--muted); font-size: 15px; }
 
     /* Steps */
-    .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; position: relative; counter-reset: s; }
-    .steps::before { content: ""; position: absolute; top: 22px; left: 22px; right: 22px; height: 2px; background: var(--line); }
-    .steps::after {
-      content: ""; position: absolute; top: 22px; left: 22px; height: 2px; width: 0;
-      background: linear-gradient(90deg, var(--accent), var(--rose)); transition: width 1.6s cubic-bezier(.2,.8,.2,1) .3s;
-    }
-    .steps.in::after { width: calc(100% - 44px); }
-    .step { position: relative; padding-top: 66px; }
-    .step::before {
-      counter-increment: s; content: counter(s); position: absolute; top: 0; left: 0; z-index: 1;
-      width: 46px; height: 46px; border-radius: 50%; background: var(--card); border: 2px solid var(--accent);
-      color: var(--accent-dark); font-weight: 600; display: grid; place-items: center; font-family: "Fraunces", serif; font-size: 19px;
-    }
-    .step h3 { font-size: 20px; margin-bottom: 6px; }
-    .step p { color: var(--ink-soft); font-size: 15.5px; }
+    .steps { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--border); position: relative; }
+    .steps::after { content: ""; position: absolute; top: -1px; left: 0; height: 1px; width: 0; background: linear-gradient(90deg, var(--accent), var(--rose)); box-shadow: 0 0 12px var(--accent); transition: width 1.8s cubic-bezier(.2,.8,.2,1) .2s; }
+    .steps.in::after { width: 100%; }
+    .step { padding: 34px 26px 0 0; }
+    .step .mono { color: var(--accent); display: block; margin-bottom: 40px; }
+    .step h3 { font-size: 24px; text-transform: uppercase; margin-bottom: 10px; }
+    .step p { color: var(--muted); font-size: 15.5px; }
 
     /* About + FAQ */
-    .two { display: grid; grid-template-columns: 1fr 1.15fr; gap: 64px; align-items: start; }
-    .about h2 { font-size: clamp(30px, 3.4vw, 40px); margin-bottom: 16px; }
-    .about p { color: var(--ink-soft); margin-bottom: 14px; }
-    details { border-bottom: 1px solid var(--line); padding: 20px 0; }
-    details:first-of-type { border-top: 1px solid var(--line); }
-    summary { cursor: pointer; font-weight: 600; list-style: none; display: flex; justify-content: space-between; gap: 16px; }
+    .two { display: grid; grid-template-columns: 1fr 1.15fr; gap: 70px; align-items: start; }
+    .about h2 { font-size: clamp(32px, 3.6vw, 48px); text-transform: uppercase; margin-bottom: 18px; }
+    .about p { color: var(--muted); margin-bottom: 14px; }
+    details { border-bottom: 1px solid var(--border); padding: 22px 0; }
+    details:first-of-type { border-top: 1px solid var(--border); }
+    summary { cursor: pointer; font-weight: 500; font-size: 17px; list-style: none; display: flex; justify-content: space-between; gap: 16px; }
     summary::-webkit-details-marker { display: none; }
-    summary::after { content: "+"; flex: none; width: 28px; height: 28px; border-radius: 50%; background: var(--accent-soft); color: var(--accent-dark); display: grid; place-items: center; font-size: 18px; transition: transform .3s; }
+    summary::after { content: "+"; flex: none; font-family: var(--mono); color: var(--accent); font-size: 20px; transition: transform .3s; }
     details[open] summary::after { transform: rotate(45deg); }
-    details p { color: var(--ink-soft); margin-top: 10px; font-size: 16px; }
+    details p { color: var(--muted); margin-top: 12px; font-size: 16px; }
 
     /* Contact */
-    .contact-box {
-      position: relative; overflow: hidden; isolation: isolate; max-width: 860px; margin: 0 auto; text-align: center;
-      background: var(--night); color: #fff; border-radius: 28px; padding: 72px 32px;
-    }
-    .contact-box .aurora { inset: -40%; opacity: .6; }
-    .contact-box h2 { font-size: clamp(32px, 4.4vw, 50px); margin-bottom: 14px; }
-    .contact-box p { color: rgba(255,255,255,.78); font-size: 18px; max-width: 540px; margin: 0 auto 30px; }
-    .mail { display: block; margin-top: 18px; color: rgba(255,255,255,.65); font-size: 15px; }
+    .contact { position: relative; overflow: hidden; isolation: isolate; text-align: center; padding: 160px 0 220px; }
+    .contact .planet { top: 82%; width: 160vw; transform: translateX(-50%); }
+    .contact .flare { top: 82%; transform: translate(-50%, -55%); }
+    .contact h2 { font-size: clamp(40px, 6.4vw, 92px); text-transform: uppercase; letter-spacing: -0.035em; margin-bottom: 22px; }
+    .contact p { color: var(--muted); font-size: 18px; max-width: 560px; margin: 0 auto 34px; }
+    .contact .mail { display: block; margin-top: 22px; color: var(--muted); }
 
-    footer { padding: 34px 0 44px; color: var(--muted); font-size: 14px; }
+    footer { border-top: 1px solid var(--border); padding: 30px 0 40px; color: var(--muted); }
     .foot { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+    footer a { text-decoration: none; }
 
     /* ---------- Responsive ---------- */
-    @media (max-width: 980px) {
-      .hero { padding: 120px 0 90px; }
-      .hero-grid, .two { grid-template-columns: 1fr; gap: 40px; }
-      .scene { height: 420px; max-width: 560px; }
-      .signs, .steps { grid-template-columns: repeat(2, 1fr); }
-      .steps::before, .steps::after { display: none; }
-      .features, .prices { grid-template-columns: 1fr; }
+    @media (max-width: 1000px) {
+      .sticky { grid-template-columns: 1fr; grid-template-rows: auto 1fr; gap: 10px; padding-top: 96px; padding-bottom: 30px; align-items: start; }
+      .captions { height: 190px; }
+      .viewport { height: 52vh; }
+      .orbit-grid, .two { grid-template-columns: 1fr; }
+      .prices { grid-template-columns: 1fr; }
       .price .for { min-height: 0; }
+      .steps { grid-template-columns: repeat(2, 1fr); row-gap: 40px; }
     }
     @media (max-width: 640px) {
       body { font-size: 16px; }
       .nav-links a:not(.btn) { display: none; }
-      .logo span:last-child { font-size: 16px; }
-      section { padding: 72px 0; }
-      .scene { height: 340px; }
-      .browser { width: 92%; left: 0; top: 20px; }
-      .mini-cards .mini-card:nth-child(3) { display: none; }
-      .mini-cards { grid-template-columns: 1fr 1fr; }
-      .phone { width: 112px; top: 140px; right: -4%; }
-      .c2 { display: none; }
-      .c1 { left: -2%; top: 90px; }
-      .c3 { top: 300px; left: 10%; }
-      .signs, .steps { grid-template-columns: 1fr; }
-      .ba { height: 520px; }
-      .old { padding: 16px; font-size: 14px; }
+      .logo { font-size: 16px; }
+      .hero h1 { font-size: clamp(38px, 11vw, 60px); }
+      .hero-links, .scroll-cue { display: none; }
+      .planet { top: 52%; width: 300vw; transform: translateX(-40%); }
+      .flare { top: 52%; width: 120vw; height: 40vw; }
+      .hero-inner { padding-bottom: 7vh; }
+      .captions { height: 210px; }
+      .cap h3 { font-size: 28px; }
+      .viewport { height: 46vh; }
+      .phone { width: 110px; right: -4px; bottom: -10px; }
+      section.block { padding: 90px 0; }
+      .old { padding: 14px; font-size: 13px; }
+      .old h4 { font-size: 22px; }
       .new-nav span { display: none; }
-      .new-nav { padding: 14px 16px; }
-      .new-hero { margin: 0 16px; padding: 28px 20px; }
-      .new-hero h4 { font-size: 24px; }
-      .new-cards { grid-template-columns: 1fr; padding: 14px 16px; }
-      .new-cards div:nth-child(3) { display: none; }
+      .new-nav { padding: 12px 14px; }
+      .new-hero { margin: 0 14px; padding: 24px 16px; }
+      .new-hero h4 { font-size: 22px; }
+      .new-cards { grid-template-columns: 1fr; padding: 12px 14px; }
+      .new-cards div:nth-child(n+2) { display: none; }
+      .ba { height: 440px; }
+      .orbit-box { height: 380px; }
+      .orbit { transform: translate(-50%, -50%) scale(.6); }
+      .steps { grid-template-columns: 1fr; }
+      .step .mono { margin-bottom: 16px; }
       .included { grid-template-columns: 1fr; }
-      .contact-box { padding: 52px 22px; border-radius: 22px; }
+      .contact { padding: 110px 0 150px; }
+      .contact .planet { width: 300vw; }
     }
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after { animation: none !important; transition: none !important; }
-      .js .reveal { opacity: 1; transform: none; }
+      .js .reveal { opacity: 1; transform: none; filter: none; }
       html { scroll-behavior: auto; }
     }
   </style>
 </head>
 <body>
+<div class="grain" aria-hidden="true"></div>
 
 <header id="top">
   <div class="wrap nav">
-    <a href="#" class="logo" aria-label="Hamidi Partners, til toppen">
-      <span class="logo-mark">HP</span> <span>Hamidi Partners</span>
-    </a>
+    <a href="#" class="logo" aria-label="Hamidi Partners, til toppen"><span class="logo-mark">HP</span> HAMIDI PARTNERS</a>
     <nav class="nav-links">
-      <a href="#tjenester">Tjenester</a>
-      <a href="#priser">Priser</a>
-      <a href="#slik">Slik jobber jeg</a>
-      <a href="#kontakt" class="btn btn-primary">Få et gratis utkast</a>
+      <a href="#prov" class="mono">Før / etter</a>
+      <a href="#priser" class="mono">Priser</a>
+      <a href="#slik" class="mono">Prosess</a>
+      <a href="#kontakt" class="btn btn-light">Gratis utkast <span class="arrow">↗</span></a>
     </nav>
   </div>
 </header>
 
 <main>
   <section class="hero" id="hero">
-    <div class="aurora" aria-hidden="true"><span></span><span></span><span></span></div>
-    <div class="grid-bg" aria-hidden="true"></div>
-    <div class="wrap hero-grid">
+    <canvas id="stars" aria-hidden="true"></canvas>
+    <div class="planet-wrap" id="planet" aria-hidden="true"><div class="planet"></div><div class="flare"></div></div>
+    <div class="wrap hero-inner">
+      <span class="mono hero-tag"><i></i> Nettsider for småbedrifter · tar imot nye kunder</span>
+      <h1>En nettside som <span class="glow">jobber</span> for bedriften din</h1>
+      <div class="hero-bottom">
+        <div>
+          <p class="hero-lead">Jeg lager moderne nettsider som fungerer på mobil, og tar meg av domene, drift, sikkerhet og endringer for en fast månedspris. Du ser et gratis utkast før du bestemmer deg.</p>
+          <div class="hero-cta">
+            <a href="#kontakt" class="btn btn-primary">Be om et gratis utkast <span class="arrow">↗</span></a>
+            <a href="#story" class="btn btn-line">Se forvandlingen</a>
+          </div>
+        </div>
+        <div class="hero-links mono">
+          <a href="#prov">Før og etter →</a>
+          <a href="#priser">Priser →</a>
+          <a href="#kontakt">Kontakt →</a>
+        </div>
+      </div>
+    </div>
+    <div class="scroll-cue mono" aria-hidden="true">Scroll<span></span></div>
+  </section>
+
+  <section class="story" id="story">
+    <div class="sticky wrap">
       <div>
-        <span class="eyebrow"><i></i> Tar imot nye kunder</span>
-        <h1>En nettside som <span class="shine">jobber</span> for bedriften din</h1>
-        <p class="lead">Jeg lager moderne nettsider som fungerer på mobil, og tar meg av domene, drift, sikkerhet og endringer for en fast månedspris. Du ser et gratis utkast før du bestemmer deg.</p>
-        <div class="hero-cta">
-          <a href="#kontakt" class="btn btn-primary">Be om et gratis utkast <span class="arrow">→</span></a>
-          <a href="#for-etter" class="btn btn-glass">Se før og etter</a>
+        <div class="captions">
+          <div class="cap on">
+            <span class="mono">01 / Før</span>
+            <h3>Kundene dømmer deg på mobilen</h3>
+            <p>Ikke mobiltilpasset, «ikke sikker» i nettleseren og nyheter fra 2009. Da velger mange noen andre.</p>
+          </div>
+          <div class="cap">
+            <span class="mono">02 / Redesign</span>
+            <h3>Ny side på domenet du har</h3>
+            <p>Jeg bygger en moderne side og flytter over innholdet ditt. Du ser et gratis utkast før du bestemmer deg.</p>
+          </div>
+          <div class="cap">
+            <span class="mono">03 / Live</span>
+            <h3>Rask, sikker og drevet for deg</h3>
+            <p>Fungerer på alle skjermer, har HTTPS, og jeg drifter og oppdaterer den for en fast månedspris.</p>
+          </div>
         </div>
-        <p class="hero-note">Ingen forpliktelser før du har sett utkastet.</p>
+        <div class="progress" aria-hidden="true"><span><i></i></span><span><i></i></span><span><i></i></span></div>
       </div>
-
-      <div class="scene" aria-hidden="true">
-        <div class="stage" id="stage">
-          <div class="layer browser">
-            <div class="browser-bar">
-              <span class="dot"></span><span class="dot"></span><span class="dot"></span>
-              <span class="url"><b>https://</b>dinbedrift.no</span>
+      <div class="viewport" aria-hidden="true">
+        <div class="device" id="device">
+          <div class="chrome">
+            <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+            <span class="url" id="url"><span class="bad">⚠ Ikke sikker</span> &nbsp;dinbedrift.no</span>
+          </div>
+          <div class="screen">
+            <div class="old">
+              <h4>Velkommen til vår hjemmeside!</h4>
+              <p style="text-align:center"><i>Din lokale bedrift siden 1998</i></p>
+              <div class="uc">*** SIDEN ER UNDER KONSTRUKSJON ***</div>
+              <table><tr>
+                <td style="width:32%"><a>» Hjem</a><a>» Om oss</a><a>» Tjenester</a><a>» Kontakt</a><a>» Gjestebok</a></td>
+                <td><b>NYHETER:</b><br />12.03.2009: Vi har fått nytt faksnummer!<br /><br />Denne siden vises best i Internet Explorer 6.</td>
+              </tr></table>
+              <p class="foot-old">Besøkende: <span class="counter">004213</span> | Sist oppdatert: 12.03.2009</p>
             </div>
-            <div class="mini-nav"><span class="mini-logo"></span><span class="mini-links"><span></span><span></span><span></span></span></div>
-            <div class="mini-hero">
-              <div class="bar lg"></div><div class="bar md"></div><div class="bar sm"></div>
-              <span class="mini-btn"></span>
-            </div>
-            <div class="mini-cards">
-              <div class="mini-card"><div class="ic"></div><div class="ln"></div><div class="ln s"></div></div>
-              <div class="mini-card"><div class="ic"></div><div class="ln"></div><div class="ln s"></div></div>
-              <div class="mini-card"><div class="ic"></div><div class="ln"></div><div class="ln s"></div></div>
+            <div class="new">
+              <div class="new-nav"><div><b>Din Bedrift</b><span>Tjenester</span><span>Om oss</span><span>Kontakt</span></div><span class="call">Ring oss</span></div>
+              <div class="new-hero"><h4>Lokal kvalitet du kan stole på</h4><p>Se hva vi tilbyr, sjekk åpningstidene og bestill på under ett minutt.</p><span class="b">Bestill time</span></div>
+              <div class="new-cards"><div>Tjenester<small>Tydelige priser</small></div><div>Åpent i dag<small>08:00–17:00</small></div><div>Kart og adresse<small>Finn fram enkelt</small></div></div>
             </div>
           </div>
-          <div class="layer phone">
-            <div class="phone-screen">
-              <div class="notch"></div>
-              <div class="phone-hero"></div>
-              <div class="bar lg" style="background:#14213d;height:9px"></div>
-              <div class="bar"></div>
-              <div class="bar sm"></div>
-              <div class="phone-call">Ring oss</div>
-            </div>
+          <div class="scan"></div>
+        </div>
+        <div class="phone" id="phone">
+          <div class="phone-screen">
+            <div class="notch"></div>
+            <div class="p-hero">Lokal kvalitet du kan stole på</div>
+            <div class="p-row"></div><div class="p-row s"></div>
+            <div class="p-call">Ring oss</div>
           </div>
-          <div class="layer chip c1"><span class="ck">✓</span> Mobiltilpasset</div>
-          <div class="layer chip c2"><span class="ck">🔒</span> HTTPS</div>
-          <div class="layer chip c3"><span class="ck">↗</span> Lett å finne på Google</div>
         </div>
       </div>
     </div>
   </section>
 
-  <div class="marquee" aria-hidden="true">
-    <div class="track">
-      <span>Mobiltilpasset</span><span>Sikker med HTTPS</span><span>Domene og drift inkludert</span><span>Endringer inkludert</span><span>Gratis utkast først</span><span>Én fast kontaktperson</span>
-      <span>Mobiltilpasset</span><span>Sikker med HTTPS</span><span>Domene og drift inkludert</span><span>Endringer inkludert</span><span>Gratis utkast først</span><span>Én fast kontaktperson</span>
-    </div>
-  </div>
-
-  <section class="alt" id="tjenester">
+  <section class="block" id="prov">
     <div class="wrap">
-      <div class="section-head reveal">
-        <span class="kicker">Problemet</span>
-        <h2>Kjenner du deg igjen?</h2>
-        <p>De fleste kunder sjekker bedriften din på mobilen før de ringer. Disse tingene får mange til å velge noen andre.</p>
-      </div>
-      <div class="signs">
-        <div class="sign reveal" style="--d:.0s"><strong>Ikke laget for mobil</strong><span>Teksten er bitteliten og knappene er vanskelige å treffe.</span></div>
-        <div class="sign reveal" style="--d:.1s"><strong>Advarsel i nettleseren</strong><span>Uten HTTPS viser Chrome «ikke sikker» før siden åpner.</span></div>
-        <div class="sign reveal" style="--d:.2s"><strong>Utdatert innhold</strong><span>Gamle nyheter, gamle priser eller «© 2012» nederst.</span></div>
-        <div class="sign reveal" style="--d:.3s"><strong>Ingen tid til å fikse det</strong><span>Du driver en bedrift, ikke en nettside. Det er greit.</span></div>
-      </div>
-    </div>
-  </section>
-
-  <section id="for-etter">
-    <div class="wrap">
-      <div class="section-head reveal">
-        <span class="kicker">Før og etter</span>
-        <h2>Samme bedrift. Helt annet førsteinntrykk.</h2>
+      <div class="head reveal">
+        <span class="mono">[ Prøv selv ]</span>
+        <h2>Samme bedrift. Nytt førsteinntrykk.</h2>
         <p>Dra i håndtaket og se forskjellen. Eksemplet er laget for å illustrere, ikke en ekte kunde.</p>
       </div>
       <div class="ba reveal" id="ba">
-        <div class="ba-pane old">
+        <div class="old">
           <h4>Velkommen til vår hjemmeside!</h4>
           <p style="text-align:center"><i>Din lokale bedrift siden 1998</i></p>
           <div class="uc">*** SIDEN ER UNDER KONSTRUKSJON ***</div>
-          <table>
-            <tr>
-              <td style="width:32%">
-                <a href="#for-etter">» Hjem</a><a href="#for-etter">» Om oss</a><a href="#for-etter">» Tjenester</a><a href="#for-etter">» Kontakt</a><a href="#for-etter">» Gjestebok</a>
-              </td>
-              <td>
-                <b>NYHETER:</b><br />
-                12.03.2009: Vi har fått ny faxnummer!<br />
-                Ring oss på telefon eller send fax.<br /><br />
-                Denne siden vises best i Internet Explorer 6 med oppløsning 1024x768.
-              </td>
-            </tr>
-          </table>
-          <p class="foot-old">Besøkende: <span class="counter">004213</span> &nbsp;|&nbsp; Sist oppdatert: 12.03.2009 &nbsp;|&nbsp; © 2009</p>
+          <table><tr>
+            <td style="width:32%"><a>» Hjem</a><a>» Om oss</a><a>» Tjenester</a><a>» Kontakt</a><a>» Gjestebok</a></td>
+            <td><b>NYHETER:</b><br />12.03.2009: Vi har fått nytt faksnummer!<br />Ring oss på telefon eller send faks.<br /><br />Denne siden vises best i Internet Explorer 6 med oppløsning 1024x768.</td>
+          </tr></table>
+          <p class="foot-old">Besøkende: <span class="counter">004213</span> | Sist oppdatert: 12.03.2009 | © 2009</p>
         </div>
-        <div class="ba-pane new">
+        <div class="new">
           <div class="new-nav"><div><b>Din Bedrift</b><span>Tjenester</span><span>Om oss</span><span>Kontakt</span></div><span class="call">Ring oss</span></div>
-          <div class="new-hero">
-            <h4>Lokal kvalitet du kan stole på</h4>
-            <p>Se hva vi tilbyr, sjekk åpningstidene og bestill på under ett minutt.</p>
-            <span class="b">Bestill time</span>
-          </div>
-          <div class="new-cards">
-            <div>Tjenester<small>Tydelige priser</small></div>
-            <div>Åpent i dag<small>08:00–17:00</small></div>
-            <div>Kart og adresse<small>Finn fram enkelt</small></div>
-          </div>
+          <div class="new-hero"><h4>Lokal kvalitet du kan stole på</h4><p>Se hva vi tilbyr, sjekk åpningstidene og bestill på under ett minutt.</p><span class="b">Bestill time</span></div>
+          <div class="new-cards"><div>Tjenester<small>Tydelige priser</small></div><div>Åpent i dag<small>08:00–17:00</small></div><div>Kart og adresse<small>Finn fram enkelt</small></div></div>
         </div>
         <div class="ba-handle"></div>
-        <span class="ba-label l">Før</span>
-        <span class="ba-label r">Etter</span>
+        <span class="ba-label l mono">Før</span>
+        <span class="ba-label r mono">Etter</span>
         <input type="range" min="0" max="100" value="32" aria-label="Sammenlign før og etter" id="ba-range" />
       </div>
-      <p class="ba-hint">← Dra for å sammenligne →</p>
+      <p class="ba-hint mono">← Dra for å sammenligne →</p>
     </div>
   </section>
 
-  <section class="alt">
-    <div class="wrap">
-      <div class="section-head reveal">
-        <span class="kicker">Det du får</span>
-        <h2>En ferdig nettside, og noen som tar ansvar for den</h2>
-        <p>Alt du trenger for å se profesjonell ut på nett, uten at du må tenke på det.</p>
+  <section class="block" id="inkludert">
+    <div class="wrap orbit-grid">
+      <div class="reveal">
+        <div class="head" style="margin-bottom: 0">
+          <span class="mono">[ Alt inkludert ]</span>
+          <h2>Én fast pris. Alt rundt siden er tatt hånd om.</h2>
+          <p>Du får en ferdig nettside, og noen som tar ansvar for den etterpå.</p>
+        </div>
+        <ul class="incl-list">
+          <li><span class="mono">01</span><span><b>Laget for mobil.</b> Tydelig ring-knapp og kontaktskjema på alle skjermer.</span></li>
+          <li><span class="mono">02</span><span><b>Sikker og oppdatert.</b> HTTPS, sikkerhetsoppdateringer og sikkerhetskopi.</span></li>
+          <li><span class="mono">03</span><span><b>Lett å finne.</b> Ryddig oppbygd så Google forstår hva du tilbyr.</span></li>
+          <li><span class="mono">04</span><span><b>Endringer inkludert.</b> Send en e-post, så fikser jeg det.</span></li>
+          <li><span class="mono">05</span><span><b>Én kontaktperson.</b> Du snakker direkte med den som lager siden.</span></li>
+        </ul>
       </div>
-      <div class="features">
-        <div class="feature tilt reveal" style="--d:0s">
-          <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2" width="12" height="20" rx="2.5"/><path d="M11 18h2"/></svg></div>
-          <h3>Laget for mobil</h3>
-          <p>Ser riktig ut på telefon, nettbrett og PC, med en tydelig ring-knapp og kontaktskjema.</p>
-        </div>
-        <div class="feature tilt reveal" style="--d:.08s">
-          <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 4.5-3.4 8.3-8 9-4.6-.7-8-4.5-8-9V6z"/><path d="M9 12l2 2 4-4"/></svg></div>
-          <h3>Sikker og oppdatert</h3>
-          <p>HTTPS, sikkerhetsoppdateringer og sikkerhetskopi er inkludert. Ingen advarsler for kundene dine.</p>
-        </div>
-        <div class="feature tilt reveal" style="--d:.16s">
-          <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg></div>
-          <h3>Lett å finne</h3>
-          <p>Ryddig oppbygd så Google forstår hva du tilbyr og hvor du holder til.</p>
-        </div>
-        <div class="feature tilt reveal" style="--d:0s">
-          <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h4L19 9l-4-4L4 16z"/><path d="M13.5 6.5l4 4"/></svg></div>
-          <h3>Endringer inkludert</h3>
-          <p>Nye åpningstider, bilder eller priser? Send meg en e-post, så fikser jeg det.</p>
-        </div>
-        <div class="feature tilt reveal" style="--d:.08s">
-          <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 010 18M12 3a14 14 0 000 18"/></svg></div>
-          <h3>Domene og drift</h3>
-          <p>Jeg bruker domenet du allerede har, eller setter opp et nytt. Hosting er inkludert.</p>
-        </div>
-        <div class="feature tilt reveal" style="--d:.16s">
-          <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12a8 8 0 11-3-6.2"/><path d="M21 4l-9 9-3-3"/></svg></div>
-          <h3>Én kontaktperson</h3>
-          <p>Du snakker direkte med den som lager siden. Ingen kundeservice-kø.</p>
+      <div class="orbit-box reveal" style="--d:.15s" aria-hidden="true">
+        <div class="orbit">
+          <div class="ring r2"></div>
+          <div class="ring r1"></div>
+          <div class="spin" style="--t:46s">
+            <div class="node" style="--a:0deg; --r:270px"><div><span class="pill"><i></i>Domene</span></div></div>
+            <div class="node" style="--a:60deg; --r:270px"><div><span class="pill w"><i></i>Hosting</span></div></div>
+            <div class="node" style="--a:120deg; --r:270px"><div><span class="pill"><i></i>Sikkerhetskopi</span></div></div>
+            <div class="node" style="--a:180deg; --r:270px"><div><span class="pill w"><i></i>Google</span></div></div>
+            <div class="node" style="--a:240deg; --r:270px"><div><span class="pill"><i></i>Kontaktskjema</span></div></div>
+            <div class="node" style="--a:300deg; --r:270px"><div><span class="pill w"><i></i>Endringer</span></div></div>
+          </div>
+          <div class="spin rev" style="--t:30s">
+            <div class="node" style="--a:30deg; --r:160px"><div><span class="pill w"><i></i>HTTPS</span></div></div>
+            <div class="node" style="--a:150deg; --r:160px"><div><span class="pill"><i></i>Mobil</span></div></div>
+            <div class="node" style="--a:270deg; --r:160px"><div><span class="pill w"><i></i>Oppdateringer</span></div></div>
+          </div>
+          <div class="core">HP</div>
         </div>
       </div>
     </div>
   </section>
 
-  <section id="priser">
+  <section class="block" id="priser">
     <div class="wrap">
-      <div class="section-head reveal">
-        <span class="kicker">Priser</span>
+      <div class="head reveal">
+        <span class="mono">[ Priser ]</span>
         <h2>Enkle, faste priser</h2>
         <p>Velg mellom en lav oppstartspris eller 0 kr i oppstart. Endelig pris avtales etter at du har sett utkastet.</p>
       </div>
       <div class="prices">
-        <div class="price tilt reveal" style="--d:0s">
+        <div class="price reveal" style="--d:0s">
           <h3>Liten</h3>
           <p class="for">For håndverkere, butikker, restauranter og andre som trenger en ryddig side.</p>
           <div class="amount">690 kr <small>/ mnd</small></div>
           <p class="setup">+ 6 000 kr i oppstart</p>
           <p class="option">Eller <b>0 kr i oppstart og 990 kr/mnd</b> med 12 måneders binding.</p>
-          <ul>
-            <li>1–3 sider</li>
-            <li>Ring-knapp, kontaktskjema og kart</li>
-            <li>Åpningstider, tjenester og bilder</li>
-          </ul>
-          <a href="#kontakt" class="btn btn-ghost">Be om utkast</a>
+          <ul><li>1–3 sider</li><li>Ring-knapp, kontaktskjema og kart</li><li>Åpningstider, tjenester og bilder</li></ul>
+          <a href="#kontakt" class="btn btn-line">Be om utkast</a>
         </div>
-        <div class="price featured tilt reveal" style="--d:.1s">
-          <span class="badge-top">Anbefalt</span>
+        <div class="price featured reveal" style="--d:.1s">
+          <span class="badge-top mono">Anbefalt</span>
           <h3>Mellom</h3>
           <p class="for">For bedrifter med flere tjenester, ansatte eller kunder som vil vite mer.</p>
           <div class="amount">990 kr <small>/ mnd</small></div>
           <p class="setup">+ 12 000 kr i oppstart</p>
           <p class="option">Eller <b>0 kr i oppstart og 1 290 kr/mnd</b> med 12 måneders binding.</p>
-          <ul>
-            <li>Opptil 8 sider</li>
-            <li>Prosjektgalleri eller bildegalleri</li>
-            <li>Skjema for befaring, booking eller søknad</li>
-            <li>Nyheter du kan be meg oppdatere løpende</li>
-          </ul>
+          <ul><li>Opptil 8 sider</li><li>Prosjektgalleri eller bildegalleri</li><li>Skjema for befaring, booking eller søknad</li><li>Nyheter du kan be meg oppdatere løpende</li></ul>
           <a href="#kontakt" class="btn btn-primary">Be om utkast</a>
         </div>
-        <div class="price tilt reveal" style="--d:.2s">
+        <div class="price reveal" style="--d:.2s">
           <h3>Katalog</h3>
           <p class="for">For bedrifter med mange produkter som kunder vil se før de tar kontakt.</p>
           <div class="amount">1 490 kr <small>/ mnd</small></div>
           <p class="setup">+ 12 000 kr i oppstart</p>
           <p class="option">Eller <b>0 kr i oppstart og 1 990 kr/mnd</b> med 12 måneders binding.</p>
-          <ul>
-            <li>Produktkatalog med store bilder</li>
-            <li>Prisforespørsel per produkt</li>
-            <li>Flere språk ved behov</li>
-            <li>Løpende oppdatering av produkter</li>
-          </ul>
-          <a href="#kontakt" class="btn btn-ghost">Be om utkast</a>
+          <ul><li>Produktkatalog med store bilder</li><li>Prisforespørsel per produkt</li><li>Flere språk ved behov</li><li>Løpende oppdatering av produkter</li></ul>
+          <a href="#kontakt" class="btn btn-line">Be om utkast</a>
         </div>
       </div>
       <div class="included reveal">
-        <strong>Alltid inkludert i månedsprisen</strong>
+        <strong>Alltid inkludert</strong>
         <span>Domene, hosting, HTTPS, sikkerhetsoppdateringer, sikkerhetskopi og små endringer i tekst og bilder.</span>
       </div>
     </div>
   </section>
 
-  <section class="alt" id="slik">
+  <section class="block" id="slik">
     <div class="wrap">
-      <div class="section-head reveal">
-        <span class="kicker">Prosessen</span>
+      <div class="head reveal">
+        <span class="mono">[ Prosess ]</span>
         <h2>Slik jobber jeg</h2>
         <p>Du bruker noen minutter. Jeg gjør resten.</p>
       </div>
       <div class="steps reveal" id="steps">
-        <div class="step"><h3>Ta kontakt</h3><p>Send en e-post om bedriften og hva du ønsker. Har du en nettside fra før, ser jeg på den.</p></div>
-        <div class="step"><h3>Gratis utkast</h3><p>Jeg lager et utkast av forsiden, så du ser hvordan det blir. Det koster ingenting.</p></div>
-        <div class="step"><h3>Ferdigstilling</h3><p>Du sier hva du vil endre. Jeg flytter over innholdet og gjør siden klar.</p></div>
-        <div class="step"><h3>Siden går live</h3><p>Siden publiseres på domenet ditt. Deretter drifter og oppdaterer jeg den.</p></div>
+        <div class="step"><span class="mono">01</span><h3>Ta kontakt</h3><p>Send en e-post om bedriften og hva du ønsker. Har du en nettside fra før, ser jeg på den.</p></div>
+        <div class="step"><span class="mono">02</span><h3>Gratis utkast</h3><p>Jeg lager et utkast av forsiden, så du ser hvordan det blir. Det koster ingenting.</p></div>
+        <div class="step"><span class="mono">03</span><h3>Ferdigstilling</h3><p>Du sier hva du vil endre. Jeg flytter over innholdet og gjør siden klar.</p></div>
+        <div class="step"><span class="mono">04</span><h3>Live</h3><p>Siden publiseres på domenet ditt. Deretter drifter og oppdaterer jeg den.</p></div>
       </div>
     </div>
   </section>
 
-  <section>
+  <section class="block">
     <div class="wrap two">
       <div class="about reveal">
-        <span class="kicker">Om</span>
+        <span class="mono" style="color:var(--accent);display:block;margin-bottom:18px">[ Om ]</span>
         <h2>Om Hamidi Partners</h2>
         <p>Hamidi Partners drives av meg, Farshad Hamidi. Jeg har bakgrunn i økonomi og programmering, og lager nettsider for bedrifter som vil se profesjonelle ut på nett uten å bruke tid på det selv.</p>
         <p>Du får én fast kontaktperson som kjenner siden din, og som svarer på e-post.</p>
       </div>
       <div class="reveal" style="--d:.1s">
-        <details>
-          <summary>Hva koster det hvis jeg ikke vil gå videre etter utkastet?</summary>
-          <p>Ingenting. Utkastet er gratis og uforpliktende.</p>
-        </details>
-        <details>
-          <summary>Må jeg binde meg?</summary>
-          <p>Med oppstartspris er det ingen binding. Velger du 0 kr i oppstart, er bindingstiden 12 måneder.</p>
-        </details>
-        <details>
-          <summary>Jeg har allerede et domene. Kan jeg beholde det?</summary>
-          <p>Ja. Jeg setter opp den nye siden på domenet du har, og e-posten din fortsetter som før.</p>
-        </details>
-        <details>
-          <summary>Hvem eier innholdet?</summary>
-          <p>Du. Domenet, tekstene og bildene er dine. Vil du avslutte, får du med deg innholdet.</p>
-        </details>
-        <details>
-          <summary>Kan dere hjelpe med mer enn nettsider?</summary>
-          <p>Ja, for eksempel bookingløsning, skjemaer som sender rett til e-posten din, eller enkel automatisering av rutinearbeid. Spør gjerne.</p>
-        </details>
+        <details><summary>Hva koster det hvis jeg ikke vil gå videre etter utkastet?</summary><p>Ingenting. Utkastet er gratis og uforpliktende.</p></details>
+        <details><summary>Må jeg binde meg?</summary><p>Med oppstartspris er det ingen binding. Velger du 0 kr i oppstart, er bindingstiden 12 måneder.</p></details>
+        <details><summary>Jeg har allerede et domene. Kan jeg beholde det?</summary><p>Ja. Jeg setter opp den nye siden på domenet du har, og e-posten din fortsetter som før.</p></details>
+        <details><summary>Hvem eier innholdet?</summary><p>Du. Domenet, tekstene og bildene er dine. Vil du avslutte, får du med deg innholdet.</p></details>
+        <details><summary>Kan du hjelpe med mer enn nettsider?</summary><p>Ja, for eksempel bookingløsning, skjemaer som sender rett til e-posten din, eller enkel automatisering av rutinearbeid. Spør gjerne.</p></details>
       </div>
     </div>
   </section>
 
-  <section id="kontakt" style="padding-top: 20px;">
-    <div class="wrap">
-      <div class="contact-box reveal">
-        <div class="aurora" aria-hidden="true"><span></span><span></span><span></span></div>
-        <h2>Vil du se hvordan det kan bli?</h2>
-        <p>Send meg navnet på bedriften og eventuelt nettsiden dere har i dag. Du får et gratis utkast av forsiden.</p>
-        <a class="btn btn-primary" href="mailto:farshad@hamidipartners.com?subject=Gratis%20utkast%20av%20nettside">Send e-post <span class="arrow">→</span></a>
-        <span class="mail">farshad@hamidipartners.com</span>
-      </div>
+  <section class="contact" id="kontakt">
+    <div class="planet-wrap" aria-hidden="true"><div class="planet"></div><div class="flare"></div></div>
+    <div class="wrap reveal">
+      <span class="mono" style="color:var(--accent);display:block;margin-bottom:20px">[ Neste steg ]</span>
+      <h2>Vil du se hvordan<br />det kan bli?</h2>
+      <p>Send meg navnet på bedriften og eventuelt nettsiden dere har i dag. Du får et gratis utkast av forsiden.</p>
+      <a class="btn btn-light" href="mailto:farshad@hamidipartners.com?subject=Gratis%20utkast%20av%20nettside">Send e-post <span class="arrow">↗</span></a>
+      <span class="mail mono">farshad@hamidipartners.com</span>
     </div>
   </section>
 </main>
 
 <footer>
-  <div class="wrap foot">
+  <div class="wrap foot mono">
     <span>© 2026 Hamidi Partners</span>
     <a href="mailto:farshad@hamidipartners.com">farshad@hamidipartners.com</a>
   </div>
@@ -702,64 +630,119 @@
   (function () {
     var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     var fine = window.matchMedia('(pointer: fine)').matches;
+    var clamp = function (v, a, b) { return Math.min(b, Math.max(a, v)); };
+    var ease = function (t) { return 1 - Math.pow(1 - t, 3); };
 
-    // Header goes solid after the hero
+    // ---- Starfield ----
+    var cv = document.getElementById('stars'), ctx = cv.getContext('2d');
+    var stars = [], W, H, mx = 0, my = 0, heroVisible = true;
+    function resize() {
+      var dpr = Math.min(window.devicePixelRatio || 1, 2);
+      W = cv.clientWidth; H = cv.clientHeight;
+      cv.width = W * dpr; cv.height = H * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      var n = Math.round(W * H / 5000);
+      stars = [];
+      for (var i = 0; i < n; i++) stars.push({ x: Math.random() * W, y: Math.random() * H, r: Math.random() * 1.2 + .2, d: Math.random() * .8 + .2, t: Math.random() * 6.28 });
+    }
+    function draw(ts) {
+      ctx.clearRect(0, 0, W, H);
+      for (var i = 0; i < stars.length; i++) {
+        var s = stars[i];
+        ctx.globalAlpha = reduce ? .7 : clamp(.45 + Math.sin(ts / 900 + s.t) * .35, .1, 1);
+        ctx.fillStyle = s.d > .85 ? '#ffd9c9' : '#dfe8ff';
+        ctx.beginPath();
+        ctx.arc(s.x + mx * s.d * 18, s.y + my * s.d * 18, s.r * s.d + .2, 0, 6.283);
+        ctx.fill();
+      }
+      if (!reduce && heroVisible) requestAnimationFrame(draw);
+    }
+    resize();
+    window.addEventListener('resize', resize);
+    new IntersectionObserver(function (e) {
+      var was = heroVisible; heroVisible = e[0].isIntersecting;
+      if (heroVisible && !was && !reduce) requestAnimationFrame(draw);
+    }).observe(document.getElementById('hero'));
+    requestAnimationFrame(draw);
+    if (fine && !reduce) {
+      window.addEventListener('pointermove', function (e) { mx = e.clientX / innerWidth - .5; my = e.clientY / innerHeight - .5; });
+    }
+
+    // ---- Header, hero planet, scroll story ----
     var header = document.getElementById('top');
-    var onScroll = function () { header.classList.toggle('scrolled', window.scrollY > 40); };
-    onScroll();
-    window.addEventListener('scroll', onScroll, { passive: true });
+    var planet = document.getElementById('planet');
+    var story = document.getElementById('story');
+    var device = document.getElementById('device');
+    var phone = document.getElementById('phone');
+    var url = document.getElementById('url');
+    var caps = story.querySelectorAll('.cap');
+    var bars = story.querySelectorAll('.progress i');
+    var lastStep = -1, secure = false;
 
-    // Reveal on scroll
+    function frame() {
+      var y = window.scrollY, vh = innerHeight;
+      header.classList.toggle('scrolled', y > 40);
+
+      if (!reduce) {
+        var hp = clamp(y / vh, 0, 1);
+        planet.style.transform = 'translateY(' + (-hp * 22) + 'vh) scale(' + (1 + hp * .25) + ')';
+      }
+
+      var r = story.getBoundingClientRect();
+      var p = reduce ? 1 : clamp(-r.top / (r.height - vh), 0, 1);
+      var a = ease(clamp(p / .3, 0, 1));
+      device.style.setProperty('--drx', (28 * (1 - a)) + 'deg');
+      device.style.setProperty('--dry', (-26 * (1 - a)) + 'deg');
+      device.style.setProperty('--ds', (.78 + .22 * a));
+      var w = clamp((p - .33) / .34, 0, 1);
+      device.style.setProperty('--wipe', (w * 100) + '%');
+      device.style.setProperty('--scan-o', w > 0 && w < 1 ? 1 : 0);
+      if ((w > .5) !== secure) {
+        secure = w > .5;
+        url.innerHTML = secure ? '<span class="good">🔒 https://</span>dinbedrift.no' : '<span class="bad">⚠ Ikke sikker</span> &nbsp;dinbedrift.no';
+      }
+      var ph = ease(clamp((p - .72) / .2, 0, 1));
+      phone.style.setProperty('--px', (160 * (1 - ph)) + '%');
+      phone.style.setProperty('--pr', (8 * (1 - ph)) + 'deg');
+      phone.style.setProperty('--po', ph);
+
+      var step = p < .33 ? 0 : p < .7 ? 1 : 2;
+      if (step !== lastStep) {
+        caps.forEach(function (c, i) { c.classList.toggle('on', i === step); });
+        lastStep = step;
+      }
+      var segs = [clamp(p / .33, 0, 1), clamp((p - .33) / .37, 0, 1), clamp((p - .7) / .3, 0, 1)];
+      bars.forEach(function (b, i) { b.style.transform = 'scaleX(' + segs[i] + ')'; });
+    }
+    var ticking = false;
+    window.addEventListener('scroll', function () {
+      if (!ticking) { ticking = true; requestAnimationFrame(function () { frame(); ticking = false; }); }
+    }, { passive: true });
+    window.addEventListener('resize', frame);
+    frame();
+
+    // ---- Reveal on scroll ----
     var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) {
-        if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
-      });
+      entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
     }, { threshold: 0.15 });
     document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
 
-    // 3D hero scene follows the pointer
-    var hero = document.getElementById('hero');
-    var stage = document.getElementById('stage');
-    if (!reduce && fine) {
-      hero.addEventListener('pointermove', function (e) {
-        var r = hero.getBoundingClientRect();
-        var x = (e.clientX - r.left) / r.width - 0.5;
-        var y = (e.clientY - r.top) / r.height - 0.5;
-        stage.style.setProperty('--ry', (-20 + x * 26) + 'deg');
-        stage.style.setProperty('--rx', (12 - y * 18) + 'deg');
-      });
-      hero.addEventListener('pointerleave', function () {
-        stage.style.removeProperty('--ry');
-        stage.style.removeProperty('--rx');
-      });
-    }
-
-    // Tilt cards with a light spot under the pointer
-    if (!reduce && fine) {
-      document.querySelectorAll('.tilt').forEach(function (card) {
+    // ---- Light spot on price cards ----
+    if (fine && !reduce) {
+      document.querySelectorAll('.price').forEach(function (card) {
         card.addEventListener('pointermove', function (e) {
-          var r = card.getBoundingClientRect();
-          var x = (e.clientX - r.left) / r.width;
-          var y = (e.clientY - r.top) / r.height;
-          card.style.setProperty('--ty', ((x - 0.5) * 10) + 'deg');
-          card.style.setProperty('--tx', ((0.5 - y) * 10) + 'deg');
-          card.style.setProperty('--mx', (x * 100) + '%');
-          card.style.setProperty('--my', (y * 100) + '%');
-        });
-        card.addEventListener('pointerleave', function () {
-          card.style.setProperty('--tx', '0deg');
-          card.style.setProperty('--ty', '0deg');
+          var b = card.getBoundingClientRect();
+          card.style.setProperty('--mx', (e.clientX - b.left) + 'px');
+          card.style.setProperty('--my', (e.clientY - b.top) + 'px');
         });
       });
     }
 
-    // Before/after slider
+    // ---- Before/after slider ----
     var ba = document.getElementById('ba');
     var range = document.getElementById('ba-range');
     var setPos = function (v) { ba.style.setProperty('--pos', v + '%'); };
     range.addEventListener('input', function () { setPos(range.value); });
     setPos(range.value);
-    // Nudge the slider once when it scrolls into view, so people see it moves
     if (!reduce) {
       var nudge = new IntersectionObserver(function (entries) {
         if (!entries[0].isIntersecting) return;
@@ -767,12 +750,12 @@
         var t0 = null;
         var step = function (ts) {
           if (!t0) t0 = ts;
-          var p = Math.min((ts - t0) / 1600, 1);
-          var v = 32 + Math.sin(p * Math.PI * 2) * 18 * (1 - p);
+          var q = Math.min((ts - t0) / 1600, 1);
+          var v = 32 + Math.sin(q * Math.PI * 2) * 16 * (1 - q);
           range.value = v; setPos(v);
-          if (p < 1) requestAnimationFrame(step);
+          if (q < 1) requestAnimationFrame(step);
         };
-        setTimeout(function () { requestAnimationFrame(step); }, 600);
+        setTimeout(function () { requestAnimationFrame(step); }, 500);
       }, { threshold: 0.5 });
       nudge.observe(ba);
     }
